@@ -1,0 +1,45 @@
+{
+  "regionCode": "${regionCodes.${region}}",
+  "github": {
+    "branch": "${branch}"
+  },
+  "prefix": {
+    "ssm": "/${costCenter}/${productName}/${environmentName}",
+    "name": "${costCenter}-${productName}-${environmentName}",
+    "qual": "${productRef}${environmentName}"
+  },
+  "s3": {
+    "templateBucketSuffix": "template-bucket",
+    "artifactBucket": "${prefix.name}-${defaultStage}-${regionCode}-${components.platform}-artifact-bucket",
+    "cdkBucket": "${prefix.name}-${defaultStage}-${regionCode}-${components.platform}-cdk-bucket",
+    "templateBucket": "${prefix.name}-${stage}-${regionCode}-${components.app}-${s3.templateBucketSuffix}"
+  },
+  "ssm": {
+    "kmsArn": "${prefix.ssm}/${defaultStage}/${components.platform}/cmk/arn",
+    "githubToken": "${prefix.ssm}/${defaultStage}/${components.platform}/secrets/github-token",
+    "replicationRole": "${prefix.ssm}/${defaultStage}/${components.app}/roles/s3cr",
+    "activeStage": "${prefix.ssm}/${defaultStage}/active-stage"
+  },
+  "secrets": {
+    "prefix": "arn:aws:secretsmanager:${region}:${awsAccountId}:secret:${prefix.name}"
+  },
+  "tags": {
+    "costCenter": "${costCenter}",
+    "envName": "${environmentName}",
+    "productName": "${productName}",
+    "componentName": "${componentName}",
+    "owner": "${ownerEmail}"
+  },
+  "iam": {
+    "roleArnPrefix": "arn:aws:iam::${awsAccountId}:role",
+    "s3crRole": "${prefix.name}-${stage}-${componentName}-s3cr-role",
+    "permissionsBoundary": "arn:aws:iam::${awsAccountId}:policy/${permissionsBoundaryName}",
+    "codebuildRole": "${prefix.name}-${defaultStage}-${components.platform}-codebuild-role",
+    "codepipelineRole": "${prefix.name}-${defaultStage}-${components.platform}-codepipeline-role",
+    "cloudformationRole": "${prefix.name}-${defaultStage}-${components.platform}-cloudformation-role",
+    "kmsRole": "${prefix.name}-${defaultStage}-${components.platform}-kms-role",
+    "githubConnectionRole": "${prefix.name}-${defaultStage}-${components.platform}-github-connection-role",
+    "iamRootArn": "arn:aws:iam::${awsAccountId}:root",
+    "adminRole": "${sso.adminRole}"
+  }
+}

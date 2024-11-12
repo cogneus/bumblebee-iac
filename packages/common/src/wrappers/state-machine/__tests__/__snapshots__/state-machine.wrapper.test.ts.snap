@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`step function wrapper tests should handle response, returns results matching snapshot 1`] = `
+{
+  "result": "success",
+  "test": "test",
+}
+`;
+
+exports[`step function wrapper tests should handle response, returns results matching snapshot 2`] = `
+{
+  "result": "success",
+  "test": "test",
+}
+`;

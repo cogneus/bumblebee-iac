@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Get template tests latest template request should match snapshot 1`] = `
+{
+  "input": {
+    "Key": {
+      "PK": "template#00000000-0000-0000-0000-000000000000",
+      "SK": "current",
+    },
+    "TableName": "name-templates",
+  },
+  "result": {
+    "created": "2023-01-01T00:00:00Z",
+    "group": "mock-group",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "modified": "2023-01-01T00:00:00Z",
+    "source": "mock-source",
+    "target": "mock-target",
+    "template": {},
+    "version": 1,
+  },
+}
+`;
+
+exports[`Get template tests template version request should match snapshot 1`] = `
+{
+  "input": {
+    "Key": {
+      "PK": "template#00000000-0000-0000-0000-000000000000",
+      "SK": "version#0000000001",
+    },
+    "TableName": "name-templates",
+  },
+  "result": {
+    "created": "2023-01-01T00:00:00Z",
+    "group": "mock-group",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "modified": "2023-01-01T00:00:00Z",
+    "source": "mock-source",
+    "target": "mock-target",
+    "template": {},
+    "version": 1,
+  },
+}
+`;

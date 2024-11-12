@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query templates tests query template request should match snapshot 1`] = `
+{
+  "input": {
+    "ExpressionAttributeNames": {
+      "#PKGSI": "PKGSI",
+      "#source": "source",
+      "#target": "target",
+    },
+    "ExpressionAttributeValues": {
+      ":PKGSI": "group#mock-group",
+      ":source": "mock-source",
+      ":target": "mock-target",
+    },
+    "FilterExpression": "(#target = :target) and (#source = :source)",
+    "IndexName": "name-groups",
+    "KeyConditionExpression": "(#PKGSI = :PKGSI)",
+    "ProjectionExpression": undefined,
+    "ScanIndexForward": true,
+    "TableName": "name-templates",
+  },
+  "result": {
+    "cursor": "mock-cursor",
+    "items": [
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Query templates tests query template request with default params should match snapshot 1`] = `
+{
+  "input": {
+    "ExpressionAttributeNames": {
+      "#PKGSI": "PKGSI",
+    },
+    "ExpressionAttributeValues": {
+      ":PKGSI": "group#mock-group",
+    },
+    "IndexName": "name-groups",
+    "KeyConditionExpression": "(#PKGSI = :PKGSI)",
+    "ProjectionExpression": undefined,
+    "ScanIndexForward": true,
+    "TableName": "name-templates",
+  },
+  "result": {
+    "cursor": "mock-cursor",
+    "items": [
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+      {
+        "created": "2023-01-01T00:00:00Z",
+        "group": "mock-group",
+        "id": "00000000-0000-0000-0000-000000000000",
+        "modified": "2023-01-01T00:00:00Z",
+        "source": "mock-source",
+        "target": "mock-target",
+        "template": {},
+        "version": 1,
+      },
+    ],
+  },
+}
+`;

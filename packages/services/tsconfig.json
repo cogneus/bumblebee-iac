@@ -1,0 +1,35 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "importHelpers": true,
+    "incremental": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "es2020",
+    "outDir": "./dist/lib",
+    "moduleResolution": "node",
+    "lib": ["es2020"],
+    "rootDir": "./src",
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "typeRoots": [
+    "./node_modules/@types"
+  ],
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules/**/*", "**/*.js", "**/dist"]
+}

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Get record limit tests should match limit 1`] = `
+[
+  20,
+  20,
+  20,
+  20,
+  20,
+  100,
+  100,
+  100,
+]
+`;

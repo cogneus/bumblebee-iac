@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Get auth client options tests should return the value of the secrets key 1`] = `
+{
+  "secrets": {
+    "idPrefix": undefined,
+    "ids": {
+      "authSigningKey": {
+        "name": "signingKey",
+      },
+    },
+    "kmsId": undefined,
+    "names": {},
+    "prefix": "test-prefix",
+  },
+}
+`;

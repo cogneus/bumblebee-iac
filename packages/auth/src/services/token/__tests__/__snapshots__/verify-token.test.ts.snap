@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Verify token tests Should validate audience and throw an error 1`] = `[JsonWebTokenError: jwt audience invalid. expected: random]`;
+
+exports[`Verify token tests Should validate expiry and throw an error 1`] = `[TokenExpiredError: jwt expired]`;
+
+exports[`Verify token tests Should validate issuer and throw an error 1`] = `[JsonWebTokenError: jwt issuer invalid. expected: random]`;
+
+exports[`Verify token tests Should validate signature and throw an error 1`] = `[JsonWebTokenError: invalid signature]`;

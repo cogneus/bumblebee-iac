@@ -1,0 +1,4 @@
+#!/bin/bash
+. "$(dirname "$0")/_/husky.sh"
+#npm run build --workspaces --if-present
+npx --no-install lint-staged

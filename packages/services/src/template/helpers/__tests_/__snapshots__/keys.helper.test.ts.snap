@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Keys helper tests makePK should match snapshot 1`] = `"template#test-id"`;
+
+exports[`Keys helper tests makePKGSIGroup should match snapshot 1`] = `"group#test-group"`;
+
+exports[`Keys helper tests makeSK should match snapshot 1`] = `"version#0000000001"`;
+
+exports[`Keys helper tests makeSKCurrent should match snapshot 1`] = `"current"`;
+
+exports[`Keys helper tests makeSKGSIModified should match snapshot 1`] = `"modified#2023-01-01T00:00:00Z"`;
+
+exports[`Keys helper tests removeKeyInfo should match snapshot 1`] = `
+{
+  "created": "2023-01-01T00:00:00Z",
+  "group": "test-group",
+  "id": "test-id",
+  "modified": "2023-01-01T00:00:00Z",
+  "source": "test-source",
+  "target": "test-target",
+  "template": {},
+  "version": 1,
+}
+`;

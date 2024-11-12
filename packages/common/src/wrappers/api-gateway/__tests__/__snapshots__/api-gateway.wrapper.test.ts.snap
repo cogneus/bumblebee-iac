@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api gateway wrapper tests should handle response, returns results matching snapshot 1`] = `
+[
+  {
+    "params": {
+      "testPathParam": "test-path-param",
+      "testQueryParam": "test-query-param",
+    },
+    "payload": {
+      "test": "body",
+    },
+    "serviceContext": {
+      "clientOptions": {
+        "db": {
+          "maxAttempts": 3,
+          "region": "eu-west-1",
+          "requestTimeout": 3000,
+          "tables": {
+            "test": {
+              "indices": {
+                "testIndex": {
+                  "name": "test-index-name",
+                },
+              },
+              "itemLimits": {
+                "defaultLimit": 20,
+                "maxLimit": 100,
+              },
+              "name": "test-table-name",
+            },
+          },
+        },
+      },
+      "env": "dev",
+      "log": ConsoleLogger {
+        "config": {
+          "formatter": [Function],
+          "includeSrc": true,
+          "level": undefined,
+          "levels": undefined,
+        },
+        "defaultEventCode": undefined,
+        "formatter": [Function],
+        "levels": {
+          "debug": 2,
+          "error": 5,
+          "info": 3,
+          "trace": 1,
+          "warn": 4,
+        },
+        "minLevel": 3,
+        "resolveLevel": [Function],
+        "scope": {
+          "body": "{"test": "body"}",
+          "env": "dev",
+          "name": "wrapper-test",
+          "pathParameters": {
+            "testPathParam": "test-path-param",
+          },
+          "queryStringParameters": {
+            "testQueryParam": "test-query-param",
+          },
+          "region": "eu-west-1",
+          "serviceName": "wrapper-test",
+        },
+        "transformer": undefined,
+      },
+      "region": "eu-west-1",
+    },
+  },
+]
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 1`] = `
+{
+  "body": "{"message":"NotFound","code":"NotFound"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 404,
+}
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 2`] = `
+{
+  "body": "{"message":"Request data is invalid. Unexpected token @ in JSON at position 15","code":"InvalidRequest"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 400,
+}
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 3`] = `
+{
+  "body": "{"message":"forbidden"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 403,
+}
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 4`] = `
+{
+  "body": "{"message":"BadRequest","code":"BadRequest"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 400,
+}
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 5`] = `
+{
+  "body": "{"message":"Request data is invalid. Unexpected end of JSON input","code":"InvalidRequest"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 400,
+}
+`;
+
+exports[`api gateway wrapper tests should throw Error, returns results matching snapshot 6`] = `
+{
+  "body": "{"message":"forbidden"}",
+  "headers": {
+    "Content-Type": "application/json",
+  },
+  "statusCode": 403,
+}
+`;

@@ -1,0 +1,24 @@
+{
+  "logLevel": "debug",
+  "awsAccountId": "796887838261",
+  "environmentName": "dev",
+  "allowedOrigins": ["http://localhost:8080"],
+  "github": {
+    "connectionId": "39df15a9-85f4-4872-ab93-2aa401bf632e"
+  },
+  "route53HostedZone": "cogneus-demo.co.uk",
+  "secrets":{
+    "signKey":{
+      "id": ""
+    },
+    "tokens":{
+      "id": ""
+    },
+    "users":{
+      "id": ""
+    }    
+  },
+  "sso": {
+    "adminRole": "aws-reserved/sso.amazonaws.com/eu-west-1/AWSReservedSSO_AdministratorAccess_0147e796564e85dc"
+  }
+}

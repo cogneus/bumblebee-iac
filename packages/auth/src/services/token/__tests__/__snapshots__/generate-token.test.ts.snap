@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generate token tests should generate and decode a token 1`] = `
+{
+  "decoded": {
+    "aud": "audience",
+    "email": "someone@test.com",
+    "exp": 1672574400,
+    "givenName": "Test",
+    "iat": 1672531200,
+    "iss": "issuer",
+    "legalName": "User",
+    "rights": [],
+    "subject": "test",
+    "uid": "id",
+  },
+  "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVvbmVAdGVzdC5jb20iLCJnaXZlbk5hbWUiOiJUZXN0IiwibGVnYWxOYW1lIjoiVXNlciIsInJpZ2h0cyI6W10sInN1YmplY3QiOiJ0ZXN0IiwidWlkIjoiaWQiLCJpYXQiOjE2NzI1MzEyMDAsImV4cCI6MTY3MjU3NDQwMCwiYXVkIjoiYXVkaWVuY2UiLCJpc3MiOiJpc3N1ZXIifQ.Z6i_UNl5RpmEcT0pOhdOY-RQ7lCy0PwysiY_HM_t05T4r1DmiucLzCo_MHQC32rCzCpPQbvKZ24lRU-Ww1Uk-PlHyybvhwS4SPNub7V9M4HLzi4nu25zvNXrqBkPtjmkW33u18fhPwRO-xTcg2y1vLa1OpJDNkUiTEr1d8TTq0S48fMNgCXrXu2YfDFm6HkTyVVGG3uWtlbqrEIu1cyCOijxnAH-_U0YaPgp7y33u8_uQNgfslTRU3DquJiGnuQYWwr0J4U1D81F8sJMLXGj9kSJfmqIX63QNrp7s5HeKyIQ6inQdAk3JbJ9J8APkv3imjAVBpZcDLuF8-yzYXL8XA",
+}
+`;

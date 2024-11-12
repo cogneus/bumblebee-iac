@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Remove template tests db request should match snapshot 1`] = `
+{
+  "input": [
+    {
+      "Delete": {
+        "Key": {
+          "PK": "mock-PK",
+          "SK": "mock-SK",
+        },
+        "TableName": "name-templates",
+      },
+    },
+    {
+      "Delete": {
+        "Key": {
+          "PK": "mock-PK",
+          "SK": "mock-SK",
+        },
+        "TableName": "name-templates",
+      },
+    },
+    {
+      "Delete": {
+        "Key": {
+          "PK": "mock-PK",
+          "SK": "mock-SK",
+        },
+        "TableName": "name-templates",
+      },
+    },
+  ],
+  "queryInput": {
+    "ExpressionAttributeNames": {
+      "#PK": "PK",
+    },
+    "ExpressionAttributeValues": {
+      ":PK": "template#00000000-0000-0000-0000-000000000000",
+    },
+    "KeyConditionExpression": "(#PK = :PK)",
+    "ProjectionExpression": "PK, SK",
+    "ScanIndexForward": true,
+    "TableName": "name-templates",
+  },
+  "result": undefined,
+}
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authorizer wrapper tests should handle response, returns results matching snapshot 1`] = `
+{
+  "policyDocument": {
+    "Statement": [
+      {
+        "Action": "execute-api:Invoke",
+        "Effect": "Allow",
+        "Resource": "arn:aws:execute-api:region:0123456:appId/*",
+      },
+    ],
+    "Version": "2012-10-17",
+  },
+  "principalId": "someone@test.com",
+}
+`;

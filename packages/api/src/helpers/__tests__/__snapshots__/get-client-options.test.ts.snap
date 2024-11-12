@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check permissions tests should match client options for live 1`] = `
+{
+  "db": {
+    "maxAttempts": 1,
+    "region": "",
+    "requestTimeout": 3000,
+    "tables": {
+      "templates": {
+        "indices": {
+          "groups": {
+            "name": "live-index",
+          },
+        },
+        "itemLimits": {
+          "defaultLimit": NaN,
+          "maxLimit": NaN,
+        },
+        "name": "live-table",
+      },
+    },
+  },
+}
+`;
+
+exports[`Check permissions tests should match client options for live 2`] = `
+{
+  "db": {
+    "maxAttempts": 1,
+    "region": "",
+    "requestTimeout": 3000,
+    "tables": {
+      "templates": {
+        "indices": {
+          "groups": {
+            "name": "live-index",
+          },
+        },
+        "itemLimits": {
+          "defaultLimit": NaN,
+          "maxLimit": NaN,
+        },
+        "name": "live-table",
+      },
+    },
+  },
+}
+`;
+
+exports[`Check permissions tests should match client options for staging 1`] = `
+{
+  "db": {
+    "maxAttempts": 1,
+    "region": "",
+    "requestTimeout": 3000,
+    "tables": {
+      "templates": {
+        "indices": {
+          "groups": {
+            "name": "staging-index",
+          },
+        },
+        "itemLimits": {
+          "defaultLimit": NaN,
+          "maxLimit": NaN,
+        },
+        "name": "live-table",
+      },
+    },
+  },
+}
+`;

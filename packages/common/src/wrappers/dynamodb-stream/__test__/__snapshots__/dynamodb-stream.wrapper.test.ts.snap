@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dynamo db stream wrapper tests should handle response, returns results matching snapshot 1`] = `
+[
+  {
+    "eventName": "INSERT",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+  {
+    "eventName": "MODIFY",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+]
+`;
+
+exports[`dynamo db stream wrapper tests should handle response, returns results matching snapshot 2`] = `
+[
+  {
+    "eventName": "REMOVE",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+  {
+    "eventName": "MODIFY",
+    "item": null,
+  },
+]
+`;
+
+exports[`dynamo db stream wrapper tests should handle response, returns results matching snapshot 3`] = `
+[
+  {
+    "eventName": "MODIFY",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+  {
+    "eventName": "MODIFY",
+    "item": null,
+  },
+]
+`;
+
+exports[`dynamo db stream wrapper tests should throw Error, returns results matching snapshot 1`] = `
+[
+  {
+    "eventName": "INSERT",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+  {
+    "eventName": "MODIFY",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+]
+`;
+
+exports[`dynamo db stream wrapper tests should throw Error, returns results matching snapshot 2`] = `
+[
+  {
+    "eventName": "INSERT",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+  {
+    "eventName": "MODIFY",
+    "item": {
+      "PK": "template#test-template",
+      "SK": "version#0000000000",
+      "created": "2023-02-19T14:46:24.905Z",
+    },
+  },
+]
+`;

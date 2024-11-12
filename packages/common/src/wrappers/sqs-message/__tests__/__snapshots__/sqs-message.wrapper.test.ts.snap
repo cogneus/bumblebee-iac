@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sqs message wrapper tests should handle errors, returns results matching snapshot 1`] = `
+{
+  "batchItemFailures": [],
+}
+`;
+
+exports[`sqs message wrapper tests should handle errors, returns results matching snapshot 2`] = `
+{
+  "batchItemFailures": [],
+}
+`;
+
+exports[`sqs message wrapper tests should handle errors, returns results matching snapshot 3`] = `
+{
+  "batchItemFailures": [
+    {
+      "itemIdentifier": 3,
+    },
+  ],
+}
+`;
+
+exports[`sqs message wrapper tests should handle response, returns results matching snapshot 1`] = `
+{
+  "batchItemFailures": [],
+}
+`;
+
+exports[`sqs message wrapper tests should handle response, returns results matching snapshot 2`] = `
+{
+  "batchItemFailures": [],
+}
+`;
+
+exports[`sqs message wrapper tests should handle response, returns results matching snapshot 3`] = `
+{
+  "batchItemFailures": [
+    {
+      "itemIdentifier": "1",
+    },
+  ],
+}
+`;
+
+exports[`sqs message wrapper tests should handle response, returns results matching snapshot 4`] = `
+{
+  "batchItemFailures": [
+    {
+      "itemIdentifier": "1",
+    },
+    {
+      "itemIdentifier": "2",
+    },
+  ],
+}
+`;
+
+exports[`sqs message wrapper tests should handle response, returns results matching snapshot 5`] = `
+{
+  "batchItemFailures": [],
+}
+`;

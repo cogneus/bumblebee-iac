@@ -1,0 +1,53 @@
+{
+  "costCenter": "c12345",
+  "productName": "bumblebee",
+  "productRef": "bee",
+  "ownerEmail": "some.dl@email.com",
+  "deployStages": {
+    "blue": "blue",
+    "green": "green"
+  },
+  "stages": [
+    "live",
+    "staging"
+  ],
+  "defaultComponent": "platform",
+  "components": {
+    "app": "app",
+    "auth": "auth",
+    "platform": "platform"
+  },
+  "defaultStage": "live",
+  "regions": [
+    "eu-west-1",
+    "us-east-1"
+  ],
+  "defaultRegion": "eu-west-1",
+  "regionCodes": {
+    "us-east-1": "use1",
+    "eu-west-1": "euw1"
+  },
+  "secrets": {
+    "signKey": {
+      "name": "auth-token-sign-key"
+    },
+    "tokens": {
+      "name": "auth-user-tokens"
+    },
+    "users": {
+      "name": "auth-users"
+    }
+  },
+  "github": {
+    "repoId": "cogneus/bumblebee-api"
+  },
+  "apiMappings": {
+    "app": "templates"
+  },
+  "prune": {
+    "number": 5
+  },
+  "iam": {
+    "permissionsBoundaryName": "permission-boundary"
+  }
+}

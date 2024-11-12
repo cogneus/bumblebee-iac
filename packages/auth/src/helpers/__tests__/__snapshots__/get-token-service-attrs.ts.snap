@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Get token service attrs tests should return the value of the secrets key 1`] = `
+{
+  "audience": "audience",
+  "expiresIn": "expiry",
+  "issuer": "issuer",
+}
+`;

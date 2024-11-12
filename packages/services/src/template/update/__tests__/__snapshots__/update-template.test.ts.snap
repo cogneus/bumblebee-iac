@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Update template tests db request should match snapshot 1`] = `
+{
+  "input": [
+    {
+      "Update": {
+        "ExpressionAttributeNames": {
+          "#PKGSI": "PKGSI",
+          "#SKGSI": "SKGSI",
+          "#created": "created",
+          "#group": "group",
+          "#id": "id",
+          "#modified": "modified",
+          "#source": "source",
+          "#target": "target",
+          "#template": "template",
+          "#version": "version",
+        },
+        "ExpressionAttributeValues": {
+          ":PKGSI": "group#mock-group",
+          ":SKGSI": "modified#2023-01-01T00:00:00.000Z",
+          ":created": "2023-01-01T00:00:00Z",
+          ":group": "mock-group",
+          ":id": "00000000-0000-0000-0000-000000000000",
+          ":modified": "2023-01-01T00:00:00.000Z",
+          ":source": "mock-source",
+          ":target": "mock-target",
+          ":template": {},
+          ":version": 2,
+        },
+        "Key": {
+          "PK": "template#00000000-0000-0000-0000-000000000000",
+          "SK": "current",
+        },
+        "TableName": "name-templates",
+        "UpdateExpression": "SET #group = :group, #source = :source, #target = :target, #template = :template, #id = :id, #version = :version, #modified = :modified, #created = :created, #PKGSI = :PKGSI, #SKGSI = :SKGSI",
+      },
+    },
+    {
+      "Put": {
+        "ConditionExpression": "attribute_not_exists(#pk) and attribute_not_exists(#sk)",
+        "ExpressionAttributeNames": {
+          "#pk": "PK",
+          "#sk": "SK",
+        },
+        "Item": {
+          "PK": "template#00000000-0000-0000-0000-000000000000",
+          "PKGSI": "template#00000000-0000-0000-0000-000000000000",
+          "SK": "version#0000000002",
+          "SKGSI": "modified#2023-01-01T00:00:00.000Z",
+          "created": "2023-01-01T00:00:00Z",
+          "group": "mock-group",
+          "id": "00000000-0000-0000-0000-000000000000",
+          "modified": "2023-01-01T00:00:00.000Z",
+          "source": "mock-source",
+          "target": "mock-target",
+          "template": {},
+          "version": 2,
+        },
+        "TableName": "name-templates",
+      },
+    },
+  ],
+  "result": {
+    "created": "2023-01-01T00:00:00Z",
+    "group": "mock-group",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "modified": "2023-01-01T00:00:00.000Z",
+    "source": "mock-source",
+    "target": "mock-target",
+    "template": {},
+    "version": 2,
+  },
+}
+`;

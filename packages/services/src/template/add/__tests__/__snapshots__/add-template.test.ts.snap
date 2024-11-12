@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add template tests db request should match snapshot 1`] = `
+{
+  "input": [
+    {
+      "Put": {
+        "ConditionExpression": "attribute_not_exists(#pk) and attribute_not_exists(#sk)",
+        "ExpressionAttributeNames": {
+          "#pk": "PK",
+          "#sk": "SK",
+        },
+        "Item": {
+          "PK": "template#00000000-0000-0000-0000-000000000000",
+          "PKGSI": "group#mock-group",
+          "SK": "current",
+          "SKGSI": "modified#2023-01-01T00:00:00.000Z",
+          "created": "2023-01-01T00:00:00.000Z",
+          "group": "mock-group",
+          "id": "00000000-0000-0000-0000-000000000000",
+          "modified": "2023-01-01T00:00:00.000Z",
+          "source": "mock-source",
+          "target": "mock-target",
+          "template": {},
+          "version": 1,
+        },
+        "TableName": "name-templates",
+      },
+    },
+    {
+      "Put": {
+        "ConditionExpression": "attribute_not_exists(#pk) and attribute_not_exists(#sk)",
+        "ExpressionAttributeNames": {
+          "#pk": "PK",
+          "#sk": "SK",
+        },
+        "Item": {
+          "PK": "template#00000000-0000-0000-0000-000000000000",
+          "PKGSI": "template#00000000-0000-0000-0000-000000000000",
+          "SK": "version#0000000001",
+          "SKGSI": "modified#2023-01-01T00:00:00.000Z",
+          "created": "2023-01-01T00:00:00.000Z",
+          "group": "mock-group",
+          "id": "00000000-0000-0000-0000-000000000000",
+          "modified": "2023-01-01T00:00:00.000Z",
+          "source": "mock-source",
+          "target": "mock-target",
+          "template": {},
+          "version": 1,
+        },
+        "TableName": "name-templates",
+      },
+    },
+  ],
+  "result": {
+    "created": "2023-01-01T00:00:00.000Z",
+    "group": "mock-group",
+    "id": "00000000-0000-0000-0000-000000000000",
+    "modified": "2023-01-01T00:00:00.000Z",
+    "source": "mock-source",
+    "target": "mock-target",
+    "template": {},
+    "version": 1,
+  },
+}
+`;
