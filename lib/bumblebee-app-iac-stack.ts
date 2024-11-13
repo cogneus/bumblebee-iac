@@ -9,12 +9,12 @@ export class BumblebeeAppStack extends cdk.Stack {
       awsAccountId: account,
       region,
       prefix: { name, qual: qualifier },
-      stage,
+      deployStage,
       productName,
       s3: { cdkBucket: fileAssetsBucketName },
       component,
     } = config
-    const stackPrefix = `${name}-${stage}-${component}-cdk`
+    const stackPrefix = `${name}-${deployStage}-${component}-cdk`
     const stackName = `${stackPrefix}-pipeline-stack`
     super(scope, stackName, {
       env: {
@@ -25,7 +25,7 @@ export class BumblebeeAppStack extends cdk.Stack {
         qualifier,
         fileAssetsBucketName,
       }),
-      description: `This stack includes resources related to ${productName} ${component} ${stage} API`,
+      description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     })
     const functionName = `${stackPrefix}-api-hw`
     new Function(this, functionName, {

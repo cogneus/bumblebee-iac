@@ -93,5 +93,6 @@ export interface Config {
   component: string
   region: string
   stage: string
+  deployStage: string
   componentName: string
 }

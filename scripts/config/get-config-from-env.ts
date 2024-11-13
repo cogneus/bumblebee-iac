@@ -3,9 +3,10 @@ import { Config } from './config.interface'
 import path = require('path')
 import { getConfig } from './get-config'
 import { env } from 'process'
+import { defaultConfigFile } from './const'
 
 export const getConfigFromEnv = (): Config => {
-  const configFile = path.resolve('./env.json')
+  const configFile = defaultConfigFile
   if (existsSync(configFile)) {
     const file = readFileSync(configFile, 'utf8');
     return JSON.parse(file);
@@ -17,8 +18,7 @@ export const getConfigFromEnv = (): Config => {
     );
   }
   return getConfig({
-    coreConfigFile: path.resolve('./config/core.json'),
-    configFile: path.resolve(configFile),
+    configFile,
     environmentName,
     branch,
     component,

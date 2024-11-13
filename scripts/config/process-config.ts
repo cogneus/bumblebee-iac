@@ -3,7 +3,7 @@ import { Params } from './config-params.interface'
 const getValue = (path: string, config: Record<string, any>) =>
   path.split('.').reduce((acc, part) => acc[part], config)
 
-const regex = /\${([^${}]*?)}/g
+const regex = /\${(?![^${}]*TOKEN[^${}]*)([^${}]*?)}/g
 const processConfigElement = (value: any, config: Record<string, any>) => {
   let val = value
   if (typeof val !== 'string' || !val.includes('${')) {
@@ -14,8 +14,12 @@ const processConfigElement = (value: any, config: Record<string, any>) => {
     matches = val.match(regex)
     if (matches) {
       val = matches?.reduce((accVal, match) => {
-        const replacement = getValue(match.substring(2, match.length - 1), config)
-        return accVal.replace(match, replacement)
+        try{
+          const replacement = getValue(match.substring(2, match.length - 1), config)
+          return accVal.replace(match, replacement)
+        } catch (ex) {
+          console.log(`Interpolation Failed`, {match, val, accVal, ex})
+        }
       }, val)
     }
   } while (matches)
