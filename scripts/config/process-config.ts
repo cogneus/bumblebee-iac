@@ -1,4 +1,4 @@
-import { Params } from './types'
+import { Params } from './config-params.interface'
 
 const getValue = (path: string, config: Record<string, any>) =>
   path.split('.').reduce((acc, part) => acc[part], config)

@@ -5,7 +5,7 @@ import {
   CodePipelineSource,
   ShellStep,
 } from "aws-cdk-lib/pipelines";
-import type { Config } from "./config.interface";
+import type { Config } from "../scripts/config/config.interface";
 
 export class BumblebeeIacStack extends cdk.Stack {
   constructor(
@@ -16,6 +16,7 @@ export class BumblebeeIacStack extends cdk.Stack {
   ) {
     const {
       github: { repoId, connectionId, branch },
+      environmentName,
       region,
       awsAccountId,
       prefix: { name },
@@ -32,6 +33,13 @@ export class BumblebeeIacStack extends cdk.Stack {
     const pipeline = new CodePipeline(this, resourceName, {
       pipelineName: resourceName,
       synth: new ShellStep("Synth", {
+        env: {
+          region,
+          component,
+          branch,
+          stage,
+          environmentName
+        },
         input: CodePipelineSource.connection(repoId, branch, {
           connectionArn: `arn:aws:codestar-connections:${region}:${awsAccountId}:connection/${connectionId}`,
         }),
