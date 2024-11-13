@@ -39,7 +39,7 @@
     }
   },
   "github": {
-    "repoId": "cogneus/bumblebee-api"
+    "repoId": "cogneus/bumblebee-iac"
   },
   "apiMappings": {
     "app": "templates"
