@@ -12,9 +12,11 @@ fi
 
 function deployRegion {
   region=$1
-  /bin/bash ${scriptDir}/set-config.sh --region $region --branch $branch --component app
+  component=app
+  /bin/bash ${scriptDir}/set-config.sh --region $region --branch $branch --component $component
   prefix=$(jq -r '.prefix.name' ${configFile})
-  cdk deploy $prefix-cdk-stack &
+  stage=$(jq -r '.stage' ${configFile})
+  cdk deploy $prefix-$stage-$component-cdk-pipeline-stack --require-approval never &
   wait -f
 }
 

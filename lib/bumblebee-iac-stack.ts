@@ -14,7 +14,6 @@ export class BumblebeeIacStack extends cdk.Stack {
     props: cdk.StackProps,
     config: Config
   ) {
-    super(scope, id, props);
     const {
       github: { repoId, connectionId, branch },
       region,
@@ -22,7 +21,13 @@ export class BumblebeeIacStack extends cdk.Stack {
       prefix: { name },
       stage,
       component,
-    } = config;
+      productName,
+    } = config
+    super(scope, id, {
+      ...props,
+      description: `This stack includes resources related to ${productName} ${component}`
+    });
+
     const resourceName = `${name}-${stage}-${component}-cdk-pipeline`;
     const pipeline = new CodePipeline(this, resourceName, {
       pipelineName: resourceName,

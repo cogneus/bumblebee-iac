@@ -15,12 +15,21 @@ const loadConfigFile = (path: string): Config => {
 
 const main = async () => {
   const config = loadConfigFile(path.resolve("./env.json"));
-  const app = new cdk.App();
+  const app = new cdk.App({
+    context: {
+      [cdk.PERMISSIONS_BOUNDARY_CONTEXT_KEY]: {
+        name: config.iam.permissionsBoundaryName,
+      },
+    },
+  });
   const {
     awsAccountId: account,
     region,
     prefix: { name, qual: qualifier },
     stage,
+    s3: {
+      cdkBucket: fileAssetsBucketName
+    },
     component,
   } = config;
   const resourceName = `${name}-${stage}-${component}-cdk-pipeline-stack`;
@@ -34,6 +43,7 @@ const main = async () => {
       },
       synthesizer: new cdk.DefaultStackSynthesizer({
         qualifier,
+        fileAssetsBucketName,
       }),
     },
     config
