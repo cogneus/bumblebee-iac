@@ -13,6 +13,7 @@ export class BumblebeeAppStack extends cdk.Stack {
       productName,
       s3: { cdkBucket: fileAssetsBucketName },
       component,
+      tags,
     } = config
     const stackPrefix = `${name}-${deployStage}-${component}-cdk`
     const stackName = `${stackPrefix}-pipeline-stack`
@@ -25,6 +26,7 @@ export class BumblebeeAppStack extends cdk.Stack {
         qualifier,
         fileAssetsBucketName,
       }),
+      tags,
       stackName,
       description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     })
