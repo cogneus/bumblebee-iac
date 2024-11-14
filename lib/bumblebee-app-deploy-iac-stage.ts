@@ -26,6 +26,7 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
         account,
         region,
       },
+      stageName: `Deploy-${regionCodes[targetRegion]}-${deployStage}`,
     })
     const serviceConfig = getConfig({
       environmentName,

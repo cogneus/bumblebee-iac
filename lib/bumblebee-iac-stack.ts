@@ -37,6 +37,7 @@ export class BumblebeeIacStack extends cdk.Stack {
         qualifier,
         fileAssetsBucketName,
       }),
+      stackName,
       description: `This stack includes resources related to ${productName} ${component}`,
     })
     
@@ -64,7 +65,7 @@ export class BumblebeeIacStack extends cdk.Stack {
         commands: ['npm ci', 'npm run build', 'npx cdk synth'],
       }),
     })
-    const deployWave = pipeline.addWave('wave')
+    const deployWave = pipeline.addWave('Deploy')
     deployWave.addPre(new ManualApprovalStep('Approval'))
     regions.forEach(targetRegion => {
       deployWave.addStage(

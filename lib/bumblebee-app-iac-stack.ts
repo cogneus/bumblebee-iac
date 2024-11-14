@@ -25,10 +25,13 @@ export class BumblebeeAppStack extends cdk.Stack {
         qualifier,
         fileAssetsBucketName,
       }),
+      stackName,
       description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     })
     const functionName = `${stackPrefix}-api-hw`
     new Function(this, functionName, {
+      functionName,
+      description: 'test function',
       runtime: Runtime.NODEJS_18_X,
       handler: 'index.handler',
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
