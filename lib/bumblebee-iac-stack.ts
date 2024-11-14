@@ -9,6 +9,7 @@ import {
 import * as ssm from 'aws-cdk-lib/aws-ssm'
 import type { Config } from '../scripts/config/config.interface'
 import { BumblebeeAppDeployStage } from './bumblebee-app-deploy-iac-stage'
+import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam'
 
 export class BumblebeeIacStack extends cdk.Stack {
   constructor(scope: Construct, config: Config) {
@@ -25,6 +26,7 @@ export class BumblebeeIacStack extends cdk.Stack {
       component,
       productName,
       regions,
+      costCenter,
     } = config
     const stackPrefix = `${name}-${stage}-${component}-cdk-pipeline`
     const stackName = `${stackPrefix}-stack`
@@ -50,6 +52,14 @@ export class BumblebeeIacStack extends cdk.Stack {
 
     const pipeline = new CodePipeline(this, stackPrefix, {
       pipelineName: stackPrefix,
+      synthCodeBuildDefaults:{
+        rolePolicy: [new PolicyStatement({
+          sid: 'SSM Access',
+          effect: Effect.ALLOW,
+          actions: ['ssm:GetParameter'],
+          resources: [`arn:aws:ssm:${region}:${account}:parameter/${costCenter}/${productName}/${environmentName}/${stage}/*`],
+        })]
+      },
       synth: new ShellStep('Synth', {
         env: {
           region,
