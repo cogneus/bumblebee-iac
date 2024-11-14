@@ -58,7 +58,6 @@ export class BumblebeeIacStack extends cdk.Stack {
           stage,
           environmentName,
         },
-
         input: CodePipelineSource.connection(repoId, branch, {
           connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
         }),

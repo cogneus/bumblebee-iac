@@ -54,10 +54,7 @@ export interface Config {
   productRef: string
   ownerEmail: string
   defaultDeployStage: string
-  deployStages: {
-    blue: string
-    green: string
-  }
+  deployStages: Record<string, string>
   stages: string []
   defaultComponent: string
   components: {

@@ -14,12 +14,10 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
       prefix: { name },
       environmentName,
       github: { branch },
-      defaultDeployStage,
       component,
       stage
     } = config
-
-    const deployStage = ssm.StringParameter.valueFromLookup(scope, `${activeStage}/cdk-${component}`, defaultDeployStage)
+    const deployStage = scope.node.getContext('deployStage')
     const stageName = `${name}-${deployStage}-${component}-${regionCodes[targetRegion]}-cdk-deploy-stage`
     super(scope, stageName, {
       env: {
