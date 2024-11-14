@@ -3,6 +3,7 @@
   "productName": "bumblebee",
   "productRef": "bee",
   "ownerEmail": "some.dl@email.com",
+  "defaultDeployStage": "blue",
   "deployStages": {
     "blue": "blue",
     "green": "green"

@@ -53,6 +53,7 @@ export interface Config {
   productName: string
   productRef: string
   ownerEmail: string
+  defaultDeployStage: string
   deployStages: {
     blue: string
     green: string
@@ -67,10 +68,7 @@ export interface Config {
   defaultStage: string
   regions: string []
   defaultRegion: string
-  regionCodes: {
-    "us-east-1": string
-    "eu-west-1": string
-  }
+  regionCodes: Record<string, string>
   github: {
     repoId: string
     branch: string
