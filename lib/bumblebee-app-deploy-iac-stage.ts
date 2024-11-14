@@ -10,7 +10,6 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
       awsAccountId: account,
       region,
       regionCodes,
-      ssm: { activeStage },
       prefix: { name },
       environmentName,
       github: { branch },

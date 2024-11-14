@@ -54,7 +54,7 @@ export class BumblebeeIacStack extends cdk.Stack {
       pipelineName: stackPrefix,
       synthCodeBuildDefaults:{
         rolePolicy: [new PolicyStatement({
-          sid: 'SSM Access',
+          sid: 'SSMAccess',
           effect: Effect.ALLOW,
           actions: ['ssm:GetParameter'],
           resources: [`arn:aws:ssm:${region}:${account}:parameter/${costCenter}/${productName}/${environmentName}/${stage}/*`],

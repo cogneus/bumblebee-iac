@@ -40,7 +40,7 @@ export class BumblebeeAppStack extends cdk.Stack {
       handler: "index.handler",
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     });
-    const restApiName = `${stackPrefix}-api`;
+    const restApiName = `${stackPrefix}-cdk-api`;
     const api = new LambdaRestApi(this, restApiName, {
       restApiName,
       defaultCorsPreflightOptions: {
