@@ -19,7 +19,7 @@ export const addAPIFunction = (
     handler: "index.handler",
     code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     functionName,
-    description
+    description,
   });
 
   return new LambdaIntegration(lambdaFunction);

@@ -1,7 +1,11 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
-import { Cors, LambdaIntegration, LambdaRestApi } from "aws-cdk-lib/aws-apigateway";
+import {
+  Cors,
+  LambdaIntegration,
+  LambdaRestApi,
+} from "aws-cdk-lib/aws-apigateway";
 import { Config } from "../scripts/config";
 import { addAPI } from "./add-api";
 
@@ -32,6 +36,6 @@ export class BumblebeeAppStack extends cdk.Stack {
       stackName,
       description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     });
-    addAPI(this, stackPrefix, config)
+    addAPI(this, stackPrefix, config);
   }
 }

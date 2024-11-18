@@ -1,8 +1,8 @@
-import * as cdk from 'aws-cdk-lib'
-import { Construct } from 'constructs'
-import { BumblebeeAppStack } from './bumblebee-app-iac-stack'
-import { Config, getConfig } from '../scripts/config'
-import * as ssm from 'aws-cdk-lib/aws-ssm'
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
+import { BumblebeeAppStack } from "./bumblebee-app-iac-stack";
+import { Config, getConfig } from "../scripts/config";
+import * as ssm from "aws-cdk-lib/aws-ssm";
 
 export class BumblebeeAppDeployStage extends cdk.Stage {
   constructor(scope: Construct, targetRegion: string, config: Config) {
@@ -14,17 +14,17 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
       environmentName,
       github: { branch },
       component,
-      stage
-    } = config
-    const deployStage = scope.node.getContext('deployStage')
-    const stageName = `${name}-${deployStage}-${component}-${regionCodes[targetRegion]}-cdk-deploy-stage`
+      stage,
+    } = config;
+    const deployStage = scope.node.getContext("deployStage");
+    const stageName = `${name}-${deployStage}-${component}-${regionCodes[targetRegion]}-cdk-deploy-stage`;
     super(scope, stageName, {
       env: {
         account,
         region,
       },
       stageName: `Deploy-${regionCodes[targetRegion]}-${deployStage}`,
-    })
+    });
     const serviceConfig = getConfig({
       environmentName,
       branch,
@@ -32,8 +32,8 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
       region: targetRegion,
       stage,
       deployStage,
-    })
+    });
 
-    new BumblebeeAppStack(this, serviceConfig)
+    new BumblebeeAppStack(this, serviceConfig);
   }
 }
