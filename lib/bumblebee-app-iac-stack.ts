@@ -32,6 +32,6 @@ export class BumblebeeAppStack extends cdk.Stack {
       stackName,
       description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     });
-    addAPI(scope, stackPrefix, config)
+    addAPI(this, stackPrefix, config)
   }
 }
