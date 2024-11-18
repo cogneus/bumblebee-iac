@@ -1,13 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
-import {
-  Cors,
-  LambdaIntegration,
-  LambdaRestApi,
-} from "aws-cdk-lib/aws-apigateway";
 import { Config } from "../scripts/config";
-import { addAPI, Api } from "./api.construct";
+import { Api } from "./api.construct";
 import { ApiErrorFunction } from "./api-error-function.construct";
 import { ApiRole } from "./api-role.construct";
 import { ApiAuthRole } from "./api-auth-role.construct";
