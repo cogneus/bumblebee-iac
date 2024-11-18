@@ -1,5 +1,5 @@
-import { Construct } from "constructs";
-import { Config } from "../scripts/config";
+import { Construct } from 'constructs';
+import { Config } from '../scripts/config';
 import {
   Effect,
   ManagedPolicy,
@@ -7,7 +7,7 @@ import {
   PolicyStatement,
   Role,
   ServicePrincipal,
-} from "aws-cdk-lib/aws-iam";
+} from 'aws-cdk-lib/aws-iam';
 
 export interface ApiRoleProps {
   stackPrefix: string;
@@ -35,12 +35,12 @@ export class ApiRole extends Construct {
         new PolicyStatement({
           effect: Effect.ALLOW,
           actions: [
-            "dynamodb:PutItem",
-            "dynamodb:GetItem",
-            "dynamodb:DeleteItem",
-            "dynamodb:UpdateItem",
-            "dynamodb:Query",
-            "dynamodb:BatchWriteItem",
+            'dynamodb:PutItem',
+            'dynamodb:GetItem',
+            'dynamodb:DeleteItem',
+            'dynamodb:UpdateItem',
+            'dynamodb:Query',
+            'dynamodb:BatchWriteItem',
           ],
           resources: [
             `arn:aws:dynamodb:*:${awsAccountId}:table/${name}-*-${componentName}-template-table`,
@@ -54,7 +54,7 @@ export class ApiRole extends Construct {
       statements: [
         new PolicyStatement({
           effect: Effect.ALLOW,
-          actions: ["kms:Decrypt", "kms:GenerateDataKey"],
+          actions: ['kms:Decrypt', 'kms:GenerateDataKey'],
           resources: [`*`],
         }),
       ],
@@ -65,11 +65,11 @@ export class ApiRole extends Construct {
         new PolicyStatement({
           effect: Effect.ALLOW,
           actions: [
-            "xray:PutTraceSegments",
-            "xray:PutTelemetryRecords",
-            "xray:GetSamplingRules",
-            "xray:GetSamplingTargets",
-            "xray:GetSamplingStatisticSummaries",
+            'xray:PutTraceSegments',
+            'xray:PutTelemetryRecords',
+            'xray:GetSamplingRules',
+            'xray:GetSamplingTargets',
+            'xray:GetSamplingStatisticSummaries',
           ],
           resources: [`*`],
         }),
@@ -77,11 +77,11 @@ export class ApiRole extends Construct {
     });
     this.role = new Role(scope, roleName, {
       roleName,
-      path: "/",
-      assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
+      path: '/',
+      assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
       managedPolicies: [
         ManagedPolicy.fromAwsManagedPolicyName(
-          "service-role/AWSLambdaVPCAccessExecutionRole"
+          'service-role/AWSLambdaVPCAccessExecutionRole'
         ),
       ],
       inlinePolicies: {

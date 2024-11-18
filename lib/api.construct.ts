@@ -1,13 +1,13 @@
-import { Construct } from "constructs";
+import { Construct } from 'constructs';
 import {
   AuthorizationType,
   Cors,
   LambdaRestApi,
-} from "aws-cdk-lib/aws-apigateway";
-import { Config } from "../scripts/config";
-import { ServicePrincipal } from "aws-cdk-lib/aws-iam";
-import { ApiAuthorizer } from "./api-authorizer.construct";
-import { ApiErrorFunction } from "./api-error-function.construct";
+} from 'aws-cdk-lib/aws-apigateway';
+import { Config } from '../scripts/config';
+import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { ApiAuthorizer } from './api-authorizer.construct';
+import { ApiErrorFunction } from './api-error-function.construct';
 
 export interface ApiProps {
   stackPrefix: string;
@@ -44,8 +44,8 @@ export class Api extends Construct {
     });
 
     authFunction.addPermission(`${stackPrefix}-api-auth-permission`, {
-      action: "lambda:InvokeFunction",
-      principal: new ServicePrincipal("apigateway.amazonaws.com,"),
+      action: 'lambda:InvokeFunction',
+      principal: new ServicePrincipal('apigateway.amazonaws.com'),
       sourceArn: `arn:aws:execute-api:${region}:${awsAccountId}:${this.restApi.restApiId}/authorizers/${authorizer.authorizerId}`,
     });
   }

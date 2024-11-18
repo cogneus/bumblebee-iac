@@ -1,7 +1,7 @@
-import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
-import { LambdaIntegration, Resource } from "aws-cdk-lib/aws-apigateway";
-import { ApiRole } from "./api-role.construct";
+import { Construct } from 'constructs';
+import { Function, InlineCode, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { LambdaIntegration, Resource } from 'aws-cdk-lib/aws-apigateway';
+import { ApiRole } from './api-role.construct';
 
 export interface ApiFunctionProps {
   stackPrefix: string;
@@ -30,7 +30,7 @@ export class ApiFunction extends Construct {
     const lambdaFunction = new Function(scope, functionName, {
       runtime: Runtime.NODEJS_18_X,
       role: apiRole.role,
-      handler: "index.handler",
+      handler: 'index.handler',
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
       functionName,
       description,

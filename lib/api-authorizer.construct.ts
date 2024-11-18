@@ -1,7 +1,7 @@
-import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
-import { TokenAuthorizer } from "aws-cdk-lib/aws-apigateway";
-import { ApiAuthRole } from "./api-auth-role.construct";
+import { Construct } from 'constructs';
+import { Function, InlineCode, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { TokenAuthorizer } from 'aws-cdk-lib/aws-apigateway';
+import { ApiAuthRole } from './api-auth-role.construct';
 
 export interface ApiAuthorizerProps {
   stackPrefix: string;
@@ -19,9 +19,9 @@ export class ApiAuthorizer extends Construct {
     const authFunction = new Function(scope, authFunctionName, {
       functionName: authFunctionName,
       role: authRole.role,
-      description: "Gateway authorizer function for templates API",
+      description: 'Gateway authorizer function for templates API',
       runtime: Runtime.NODEJS_18_X,
-      handler: "index.handler",
+      handler: 'index.handler',
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     });
 

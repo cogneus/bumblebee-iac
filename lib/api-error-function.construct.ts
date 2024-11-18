@@ -1,6 +1,6 @@
-import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
-import { ApiRole } from "./api-role.construct";
+import { Construct } from 'constructs';
+import { Function, InlineCode, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { ApiRole } from './api-role.construct';
 
 export interface ApiErrorFunctionProps {
   stackPrefix: string;
@@ -18,9 +18,9 @@ export class ApiErrorFunction extends Construct {
     this.function = new Function(scope, errorFunctionName, {
       functionName: errorFunctionName,
       role: apiRole.role,
-      description: "Returns errors for unsupported API routes",
+      description: 'Returns errors for unsupported API routes',
       runtime: Runtime.NODEJS_18_X,
-      handler: "index.handler",
+      handler: 'index.handler',
       code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
     });
   }

@@ -1,5 +1,5 @@
-import { Construct } from "constructs";
-import { Config } from "../scripts/config";
+import { Construct } from 'constructs';
+import { Config } from '../scripts/config';
 import {
   Effect,
   ManagedPolicy,
@@ -7,7 +7,7 @@ import {
   PolicyStatement,
   Role,
   ServicePrincipal,
-} from "aws-cdk-lib/aws-iam";
+} from 'aws-cdk-lib/aws-iam';
 
 export interface ApiAuthRoleProps {
   stackPrefix: string;
@@ -32,7 +32,7 @@ export class ApiAuthRole extends Construct {
       statements: [
         new PolicyStatement({
           effect: Effect.ALLOW,
-          actions: ["secretsmanager:GetSecretValue"],
+          actions: ['secretsmanager:GetSecretValue'],
           resources: [`${prefix}-auth-token-sign-key*`],
         }),
       ],
@@ -42,7 +42,7 @@ export class ApiAuthRole extends Construct {
       statements: [
         new PolicyStatement({
           effect: Effect.ALLOW,
-          actions: ["kms:Decrypt", "kms:GenerateDataKey"],
+          actions: ['kms:Decrypt', 'kms:GenerateDataKey'],
           resources: [`*`],
         }),
       ],
@@ -53,11 +53,11 @@ export class ApiAuthRole extends Construct {
         new PolicyStatement({
           effect: Effect.ALLOW,
           actions: [
-            "xray:PutTraceSegments",
-            "xray:PutTelemetryRecords",
-            "xray:GetSamplingRules",
-            "xray:GetSamplingTargets",
-            "xray:GetSamplingStatisticSummaries",
+            'xray:PutTraceSegments',
+            'xray:PutTelemetryRecords',
+            'xray:GetSamplingRules',
+            'xray:GetSamplingTargets',
+            'xray:GetSamplingStatisticSummaries',
           ],
           resources: [`*`],
         }),
@@ -65,11 +65,11 @@ export class ApiAuthRole extends Construct {
     });
     this.role = new Role(scope, roleName, {
       roleName,
-      path: "/",
-      assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
+      path: '/',
+      assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
       managedPolicies: [
         ManagedPolicy.fromAwsManagedPolicyName(
-          "service-role/AWSLambdaVPCAccessExecutionRole"
+          'service-role/AWSLambdaVPCAccessExecutionRole'
         ),
       ],
       inlinePolicies: {

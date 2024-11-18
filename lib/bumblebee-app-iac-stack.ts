@@ -1,13 +1,13 @@
-import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
-import { Config } from "../scripts/config";
-import { Api } from "./api.construct";
-import { ApiErrorFunction } from "./api-error-function.construct";
-import { ApiRole } from "./api-role.construct";
-import { ApiAuthRole } from "./api-auth-role.construct";
-import { ApiAuthorizer } from "./api-authorizer.construct";
-import { ApiResources } from "./api-resources.construct";
-import { ApiIntegration } from "./api-integration.construct";
+import * as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import { Config } from '../scripts/config';
+import { Api } from './api.construct';
+import { ApiErrorFunction } from './api-error-function.construct';
+import { ApiRole } from './api-role.construct';
+import { ApiAuthRole } from './api-auth-role.construct';
+import { ApiAuthorizer } from './api-authorizer.construct';
+import { ApiResources } from './api-resources.construct';
+import { ApiIntegration } from './api-integration.construct';
 
 export class BumblebeeAppStack extends cdk.Stack {
   constructor(scope: Construct, config: Config) {
@@ -36,26 +36,26 @@ export class BumblebeeAppStack extends cdk.Stack {
       stackName,
       description: `This stack includes resources related to ${productName} ${component} ${deployStage} API`,
     });
-    const apiRole = new ApiRole(this, "api-role", { stackPrefix, config });
-    const authRole = new ApiAuthRole(this, "api-auth-role", {
+    const apiRole = new ApiRole(this, 'api-role', { stackPrefix, config });
+    const authRole = new ApiAuthRole(this, 'api-auth-role', {
       config,
       stackPrefix,
     });
-    const apiErrorFunction = new ApiErrorFunction(this, "api-error-function", {
+    const apiErrorFunction = new ApiErrorFunction(this, 'api-error-function', {
       apiRole,
       stackPrefix,
     });
-    const apiAuthorizer = new ApiAuthorizer(this, "api-authorizer", {
+    const apiAuthorizer = new ApiAuthorizer(this, 'api-authorizer', {
       authRole,
       stackPrefix,
     });
-    const api = new Api(this, "api", {
+    const api = new Api(this, 'api', {
       apiAuthorizer,
       apiErrorFunction,
       config,
       stackPrefix,
     });
-    const apiResources = new ApiResources(this, "api-resources", {
+    const apiResources = new ApiResources(this, 'api-resources', {
       api,
       stackPrefix,
     });
