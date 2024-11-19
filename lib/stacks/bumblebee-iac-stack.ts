@@ -27,6 +27,8 @@ export class BumblebeeIacStack extends cdk.Stack {
       productName,
       regions,
       deployStages,
+      route53HostedZone,
+      productRef
     } = config;
     const stackPrefix = `${name}-${stage}-${component}-cdk-pipeline`;
     const stackName = `${stackPrefix}-stack`;
@@ -73,6 +75,14 @@ export class BumblebeeIacStack extends cdk.Stack {
             (deployStage) =>
               `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`
           ),
+        ],
+      }),
+      new PolicyStatement({
+        sid: "APIAccess",
+        effect: Effect.ALLOW,
+        actions: ["apigateway:GET"],
+        resources: [
+          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`
         ],
       }),
     ];
