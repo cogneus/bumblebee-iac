@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { Function, Runtime } from "aws-cdk-lib/aws-lambda";
+import { Architecture, Function, Runtime } from "aws-cdk-lib/aws-lambda";
 import { ApiRole } from "./api-role.construct";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Duration } from "aws-cdk-lib";
@@ -22,6 +22,7 @@ export class ApiErrorFunction extends Construct {
     this.function = new NodejsFunction(scope, errorFunctionName, {
       functionName: errorFunctionName,
       role: apiRole.role,
+      architecture: Architecture.ARM_64,
       timeout: Duration.seconds(10),
       memorySize: 128,
       description: "Returns errors for unsupported API routes",

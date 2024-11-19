@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Architecture, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { LambdaIntegration, Resource } from 'aws-cdk-lib/aws-apigateway';
 import { ApiRole } from './api-role.construct';
 import { Duration } from 'aws-cdk-lib';
@@ -37,6 +37,7 @@ export class ApiFunction extends Construct {
     const lambdaFunction = new NodejsFunction(scope, functionName, {
       runtime: Runtime.NODEJS_18_X,
       role: apiRole.role,
+      architecture: Architecture.ARM_64,
       timeout: Duration.seconds(10),
       memorySize: 512,
       functionName,

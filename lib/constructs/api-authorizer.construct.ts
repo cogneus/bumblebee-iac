@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { Function, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Architecture, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { TokenAuthorizer } from 'aws-cdk-lib/aws-apigateway';
 import { ApiAuthRole } from './api-auth-role.construct';
 import { Duration } from 'aws-cdk-lib';
@@ -23,6 +23,7 @@ export class ApiAuthorizer extends Construct {
     const authFunction = new NodejsFunction(scope, authFunctionName, {
       functionName: authFunctionName,
       role: authRole.role,
+      architecture: Architecture.ARM_64,
       timeout: Duration.seconds(10),
       memorySize: 128,
       description: 'Gateway authorizer function for templates API',

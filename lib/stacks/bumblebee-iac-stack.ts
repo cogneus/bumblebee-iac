@@ -50,6 +50,18 @@ export class BumblebeeIacStack extends cdk.Stack {
       tier: ssm.ParameterTier.STANDARD,
     });
 
+    const source = CodePipelineSource.connection(repoId, branch, {
+      connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
+    })
+
+    const env = {
+      region,
+      component,
+      branch,
+      stage,
+      environmentName,
+    }
+
     const pipeline = new CodePipeline(this, stackPrefix, {
       pipelineName: stackPrefix,
       synthCodeBuildDefaults: {
@@ -65,16 +77,8 @@ export class BumblebeeIacStack extends cdk.Stack {
         ],
       },
       synth: new ShellStep("Synth", {
-        env: {
-          region,
-          component,
-          branch,
-          stage,
-          environmentName,
-        },
-        input: CodePipelineSource.connection(repoId, branch, {
-          connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
-        }),
+        env,
+        input: source,
         commands: [
           "npm i",
           "npm run build",
@@ -89,5 +93,10 @@ export class BumblebeeIacStack extends cdk.Stack {
         new BumblebeeAppDeployStage(this, targetRegion, config)
       );
     });
+    deployWave.addPost( new ShellStep('Promote', {
+      input: source,
+      commands: ['/bin/bash promote.sh'],
+      env,
+    }))
   }
 }
