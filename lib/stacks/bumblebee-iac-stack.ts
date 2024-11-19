@@ -76,9 +76,9 @@ export class BumblebeeIacStack extends cdk.Stack {
           connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
         }),
         commands: [
+          "npm i",
           "npm run build -w bumblebee-common",
           "npm run build -w bumblebee-services",
-          "npm ci",
           "npm run build",
           "npx cdk synth",
         ],
