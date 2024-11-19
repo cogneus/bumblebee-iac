@@ -1,8 +1,10 @@
 import { Construct } from 'constructs';
-import { Function, InlineCode, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { LambdaIntegration, Resource } from 'aws-cdk-lib/aws-apigateway';
 import { ApiRole } from './api-role.construct';
 import { Duration } from 'aws-cdk-lib';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import path = require('path');
 
 export interface ApiFunctionProps {
   stackPrefix: string;
@@ -12,6 +14,7 @@ export interface ApiFunctionProps {
   resources: Resource[];
   methods: string[];
   environment: Record<string, string>
+  entry: string;
 }
 
 export class ApiFunction extends Construct {
@@ -26,20 +29,21 @@ export class ApiFunction extends Construct {
       resources,
       methods,
       environment,
+      entry,
     }: ApiFunctionProps
   ) {
     super(scope, id);
     const functionName = `${stackPrefix}-api-${name}`;
-    const lambdaFunction = new Function(scope, functionName, {
+    const lambdaFunction = new NodejsFunction(scope, functionName, {
       runtime: Runtime.NODEJS_18_X,
       role: apiRole.role,
       timeout: Duration.seconds(10),
       memorySize: 512,
-      handler: 'index.handler',
-      code: new InlineCode('exports.handler = _ => "Hello, CDK";'),
       functionName,
       description,
       environment,
+      handler: 'main',
+      entry: path.join(__dirname, `../../packages/api/src/handlers/${entry}.ts`),
     });
 
     const integration = new LambdaIntegration(lambdaFunction);

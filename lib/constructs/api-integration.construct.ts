@@ -27,6 +27,7 @@ export class ApiIntegration extends Construct {
       methods: ["POST"],
       resources: template,
       environment,
+      entry: "add-template"
     });
 
     new ApiFunction(scope, "get-function", {
@@ -38,6 +39,7 @@ export class ApiIntegration extends Construct {
       methods: ["GET"],
       resources: [...item, ...version],
       environment,
+      entry: "get-template"
     });
 
     new ApiFunction(scope, "put-function", {
@@ -48,6 +50,7 @@ export class ApiIntegration extends Construct {
       methods: ["PUT"],
       resources: item,
       environment,
+      entry: "update-template"
     });
 
     new ApiFunction(scope, "remove-function", {
@@ -58,6 +61,7 @@ export class ApiIntegration extends Construct {
       methods: ["DELETE"],
       resources: item,
       environment,
+      entry: "remove-template"
     });
 
     new ApiFunction(scope, "versions-function", {
@@ -68,6 +72,7 @@ export class ApiIntegration extends Construct {
       methods: ["GET", "POST"],
       resources: versions,
       environment,
+      entry: "template-versions"
     });
 
     new ApiFunction(scope, "query-function", {
@@ -78,6 +83,7 @@ export class ApiIntegration extends Construct {
       methods: ["GET", "POST"],
       resources: query,
       environment,
+      entry: "query-template"
     });
   }
 }

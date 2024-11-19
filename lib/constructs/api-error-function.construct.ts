@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { Function, InlineCode, Runtime } from "aws-cdk-lib/aws-lambda";
+import { Function, Runtime } from "aws-cdk-lib/aws-lambda";
 import { ApiRole } from "./api-role.construct";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Duration } from "aws-cdk-lib";
