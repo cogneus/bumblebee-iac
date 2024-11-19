@@ -95,7 +95,7 @@ export class BumblebeeIacStack extends cdk.Stack {
     });
     deployWave.addPost( new ShellStep('Promote', {
       input: source,
-      commands: ['/bin/bash promote.sh'],
+      commands: ['ls','/bin/bash promote.sh'],
       env,
     }))
   }
