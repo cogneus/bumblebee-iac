@@ -16,7 +16,7 @@ function promoteAPIMapping {
   apiId=$3
   
   mappingKey=$(jq -r '.apiMappings.'$component ${configFile})
-  apiStage=\$default
+  apiStage=prod
 
   echo "Promoting ${domainName}/${mappingKey}/${apiStage} for '${region}' '${nextStage}'"
   mappingExists=$(aws --region ${region} apigatewayv2 get-api-mappings --domain-name ${domainName} --output json | jq "[.Items[] | select(.ApiMappingKey == \"${mappingKey}\")] | length")

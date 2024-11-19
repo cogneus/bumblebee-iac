@@ -2,10 +2,8 @@
 
 set -eo pipefail
 [[ ! -z ${TRACE_ENABLED} ]] && set -x
-#source ../../scripts/initialise.sh
+source ../initialise.sh
 
-echo PROMOTING
-
-#/bin/bash promote-api.sh
+/bin/bash promote-api.sh
 
 set +x
