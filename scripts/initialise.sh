@@ -6,6 +6,9 @@ if [[ $initialised != true ]] ; then
   export initialised=true
   export dir="$(pwd)"
   export rootDir="$(git rev-parse --show-toplevel)"
+  if [[ ${rootDir} == "" ]] ; then
+    export rootDir="$(cd "$(dirname -- "$dir/../../..")" && pwd )"
+  fi
   export resourcesDir="${rootDir}/resources"
   export scriptDir="${rootDir}/scripts"
   export configDir="${rootDir}/config"
