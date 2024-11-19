@@ -1,13 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Config } from '../scripts/config';
-import { Api } from './api.construct';
-import { ApiErrorFunction } from './api-error-function.construct';
-import { ApiRole } from './api-role.construct';
-import { ApiAuthRole } from './api-auth-role.construct';
-import { ApiAuthorizer } from './api-authorizer.construct';
-import { ApiResources } from './api-resources.construct';
-import { ApiIntegration } from './api-integration.construct';
+import { Config } from '../../scripts/config';
+import { Api } from '../constructs/api.construct';
+import { ApiErrorFunction } from '../constructs/api-error-function.construct';
+import { ApiRole } from '../constructs/api-role.construct';
+import { ApiAuthRole } from '../constructs/api-auth-role.construct';
+import { ApiAuthorizer } from '../constructs/api-authorizer.construct';
+import { ApiResources } from '../constructs/api-resources.construct';
+import { ApiIntegration } from '../constructs/api-integration.construct';
+import { getLambdaEnv } from '../utils/lambda-env';
 
 export class BumblebeeAppStack extends cdk.Stack {
   constructor(scope: Construct, config: Config) {
@@ -21,6 +22,7 @@ export class BumblebeeAppStack extends cdk.Stack {
       component,
       tags,
     } = config;
+    const lambdaEnv = getLambdaEnv(config)
     const stackPrefix = `${name}-${deployStage}-${component}-cdk`;
     const stackName = `${stackPrefix}-pipeline-stack`;
     super(scope, stackName, {
@@ -44,10 +46,12 @@ export class BumblebeeAppStack extends cdk.Stack {
     const apiErrorFunction = new ApiErrorFunction(this, 'api-error-function', {
       apiRole,
       stackPrefix,
+      environment: lambdaEnv.api,
     });
     const apiAuthorizer = new ApiAuthorizer(this, 'api-authorizer', {
       authRole,
       stackPrefix,
+      environment: lambdaEnv.auth,
     });
     const api = new Api(this, 'api', {
       apiAuthorizer,
@@ -62,7 +66,8 @@ export class BumblebeeAppStack extends cdk.Stack {
     new ApiIntegration(this, 'api-integration', {
       apiResources,
       apiRole,
-      stackPrefix
+      stackPrefix,
+      environment: lambdaEnv.api,
     })
   }
 }

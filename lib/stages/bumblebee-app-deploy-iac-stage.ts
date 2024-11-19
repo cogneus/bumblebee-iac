@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { BumblebeeAppStack } from './bumblebee-app-iac-stack';
-import { Config, getConfig } from '../scripts/config';
+import { BumblebeeAppStack } from '../stacks/bumblebee-app-iac-stack';
+import { Config, getConfig } from '../../scripts/config';
 
 export class BumblebeeAppDeployStage extends cdk.Stage {
   constructor(scope: Construct, targetRegion: string, config: Config) {

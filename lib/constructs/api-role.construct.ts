@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { Config } from '../scripts/config';
+import { Config } from '../../scripts/config';
 import {
   Effect,
   ManagedPolicy,

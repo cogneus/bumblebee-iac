@@ -4,6 +4,12 @@
   "bin": {
     "bumblebee-iac": "bin/bumblebee-iac.js"
   },
+  "workspaces": [
+    "packages/common",
+    "packages/services",
+    "packages/api",    
+    "packages/auth"    
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

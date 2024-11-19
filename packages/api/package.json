@@ -6,7 +6,9 @@
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "tsc --build",
+    "prebuild": "npm install",
+    "build": "tsc",
+    "package": "npm prune --production && cp -R node_modules dist/node_modules/",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest --updateSnapshot --detectOpenHandles",

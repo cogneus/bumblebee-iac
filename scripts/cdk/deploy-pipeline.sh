@@ -10,6 +10,9 @@ else
   branch=main
 fi
 
+npm run build -w bumblebee-common
+npm run build -w bumblebee-services
+
 component=app
 /bin/bash ${scriptDir}/set-config.sh --branch $branch --component $component
 prefix=$(jq -r '.prefix.name' ${configFile})

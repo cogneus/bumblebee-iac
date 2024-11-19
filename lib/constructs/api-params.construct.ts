@@ -4,7 +4,7 @@ import {
   Cors,
   LambdaRestApi,
 } from 'aws-cdk-lib/aws-apigateway';
-import { Config } from '../scripts/config';
+import { Config } from '../../scripts/config';
 import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { ApiAuthorizer } from './api-authorizer.construct';
 import { ApiErrorFunction } from './api-error-function.construct';
