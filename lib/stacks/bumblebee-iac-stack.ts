@@ -20,13 +20,13 @@ export class BumblebeeIacStack extends cdk.Stack {
       awsAccountId: account,
       s3: { cdkBucket: fileAssetsBucketName },
       ssm: { activeStage },
-      prefix: { name, qual: qualifier },
+      prefix: { name, qual: qualifier, ssm: ssmPrefix },
       stage,
       defaultDeployStage,
       component,
       productName,
       regions,
-      costCenter,
+      deployStage,
     } = config;
     const stackPrefix = `${name}-${stage}-${component}-cdk-pipeline`;
     const stackName = `${stackPrefix}-stack`;
@@ -66,9 +66,10 @@ export class BumblebeeIacStack extends cdk.Stack {
       new PolicyStatement({
         sid: "SSMAccess",
         effect: Effect.ALLOW,
-        actions: ["ssm:GetParameter"],
+        actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:aws:ssm:${region}:${account}:parameter/${costCenter}/${productName}/${environmentName}/${stage}/*`,
+          `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${stage}/*`,
+          `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`,
         ],
       }),
     ];
