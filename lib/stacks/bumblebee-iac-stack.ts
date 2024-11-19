@@ -26,7 +26,7 @@ export class BumblebeeIacStack extends cdk.Stack {
       component,
       productName,
       regions,
-      deployStage,
+      deployStages,
     } = config;
     const stackPrefix = `${name}-${stage}-${component}-cdk-pipeline`;
     const stackName = `${stackPrefix}-stack`;
@@ -69,7 +69,10 @@ export class BumblebeeIacStack extends cdk.Stack {
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
           `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${stage}/*`,
-          `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`,
+          ...Object.values(deployStages).map(
+            (deployStage) =>
+              `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`
+          ),
         ],
       }),
     ];
