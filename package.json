@@ -11,7 +11,8 @@
     "packages/auth"    
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build-packages && tsc",
+    "build-packages": "npm run build -w bumblebee-common && npm run build -w bumblebee-services",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"

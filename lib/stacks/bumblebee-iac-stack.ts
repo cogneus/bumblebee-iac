@@ -77,8 +77,6 @@ export class BumblebeeIacStack extends cdk.Stack {
         }),
         commands: [
           "npm i",
-          "npm run build -w bumblebee-common",
-          "npm run build -w bumblebee-services",
           "npm run build",
           "npx cdk synth",
         ],
