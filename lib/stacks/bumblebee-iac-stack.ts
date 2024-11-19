@@ -52,7 +52,7 @@ export class BumblebeeIacStack extends cdk.Stack {
 
     const source = CodePipelineSource.connection(repoId, branch, {
       connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
-    })
+    });
 
     const env = {
       region,
@@ -60,30 +60,31 @@ export class BumblebeeIacStack extends cdk.Stack {
       branch,
       stage,
       environmentName,
-    }
+    };
+
+    const rolePolicy = [
+      new PolicyStatement({
+        sid: "SSMAccess",
+        effect: Effect.ALLOW,
+        actions: ["ssm:GetParameter"],
+        resources: [
+          `arn:aws:ssm:${region}:${account}:parameter/${costCenter}/${productName}/${environmentName}/${stage}/*`,
+        ],
+      }),
+    ];
 
     const pipeline = new CodePipeline(this, stackPrefix, {
       pipelineName: stackPrefix,
+      codeBuildDefaults: {
+        rolePolicy,
+      },
       synthCodeBuildDefaults: {
-        rolePolicy: [
-          new PolicyStatement({
-            sid: "SSMAccess",
-            effect: Effect.ALLOW,
-            actions: ["ssm:GetParameter"],
-            resources: [
-              `arn:aws:ssm:${region}:${account}:parameter/${costCenter}/${productName}/${environmentName}/${stage}/*`,
-            ],
-          }),
-        ],
+        rolePolicy,
       },
       synth: new ShellStep("Synth", {
         env,
         input: source,
-        commands: [
-          "npm i",
-          "npm run build",
-          "npx cdk synth",
-        ],
+        commands: ["npm i", "npm run build", "npx cdk synth"],
       }),
     });
     const deployWave = pipeline.addWave("Deploy");
@@ -93,13 +94,12 @@ export class BumblebeeIacStack extends cdk.Stack {
         new BumblebeeAppDeployStage(this, targetRegion, config)
       );
     });
-    deployWave.addPost( new ShellStep('Promote', {
-      input: source,
-      commands: [
-        'cd ./scripts/promote',
-        '/bin/bash ./promote.sh',
-      ],
-      env,
-    }))
+    deployWave.addPost(
+      new ShellStep("Promote", {
+        input: source,
+        commands: ["cd ./scripts/promote", "/bin/bash ./promote.sh"],
+        env,
+      })
+    );
   }
 }
