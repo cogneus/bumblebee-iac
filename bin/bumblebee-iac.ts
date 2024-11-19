@@ -7,7 +7,7 @@ import { getSSMValue } from '../lib/utils/ssm'
 
 const main = async () => {
   const config = getConfigFromEnv()
-  const { ssm: { activeStage }, component, defaultDeployStage, deployStages} = config
+  const { ssm: { activeStage }, component, deployStages} = config
   const currentStage = await getSSMValue(`${activeStage}/cdk-${component}`, config, '')
   const deployStage = currentStage === deployStages.blue ? deployStages.green : deployStages.blue
 
