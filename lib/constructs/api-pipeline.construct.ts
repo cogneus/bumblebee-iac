@@ -34,14 +34,14 @@ export class APIPipeline extends Construct {
       route53HostedZone,
       productRef,
     } = config;
-
+    const deployStageNames = Object.values(deployStages)
     const ssmPolicy = new PolicyStatement({
       sid: "SSMAccess",
       effect: Effect.ALLOW,
       actions: ["ssm:GetParameter", "ssm:GetParameters"],
       resources: [
         `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${stage}/*`,
-        ...Object.values(deployStages).map(
+        ...deployStageNames.map(
           (deployStage) =>
             `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`
         ),
@@ -57,6 +57,15 @@ export class APIPipeline extends Construct {
           ...resources,
           `arn:aws:apigateway:${targetRegion}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
           `arn:aws:apigateway:${targetRegion}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`,
+          ...deployStageNames.reduce<string[]>(
+            (resources, targetStage) => [
+              ...resources,
+              `arn:aws:apigateway:${targetRegion}::/domainnames/${targetStage}.${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
+              `arn:aws:apigateway:${targetRegion}::/domainnames/${targetStage}.${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`,
+              
+            ],
+            []
+          )
         ],
         []
       ),
