@@ -22,11 +22,11 @@ export class ApiSSMParams extends Construct {
       componentName,
     } = config;
     const resourceSsmPrefix = `${ssm}/${deployStage}/${componentName}`;
-    const { restApiId } = api.restApi;
+    const { apiId } = api.httpApi;
     const apiIdParamName = `${resourceSsmPrefix}/cdk/api/id`;
     new StringParameter(this, apiIdParamName, {
       parameterName: apiIdParamName,
-      stringValue: restApiId,
+      stringValue: apiId,
       description: `The id for the ${deployStage} API`,
       tier: ParameterTier.STANDARD,
     });
@@ -34,7 +34,7 @@ export class ApiSSMParams extends Construct {
     const apiDomainParamName = `${resourceSsmPrefix}/cdk/api/domain`;
     new StringParameter(this, apiDomainParamName, {
       parameterName: apiDomainParamName,
-      stringValue: `${restApiId}.execute-api.${region}.amazonaws.com`,
+      stringValue: `${apiId}.execute-api.${region}.amazonaws.com`,
       description: `The domain for the ${deployStage} API`,
       tier: ParameterTier.STANDARD,
     });

@@ -8,6 +8,7 @@ import { Config } from '../../scripts/config';
 import { ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { ApiAuthorizer } from './api-authorizer.construct';
 import { ApiErrorFunction } from './api-error-function.construct';
+import { CorsHttpMethod, HttpApi } from 'aws-cdk-lib/aws-apigatewayv2';
 
 export interface ApiProps {
   stackPrefix: string;
@@ -25,29 +26,33 @@ export class Api extends Construct {
     super(scope, id);
 
     const { allowedOrigins, awsAccountId, region } = config;
-    const restApiName = `${stackPrefix}-cdk-api`;
+    const apiName = `${stackPrefix}-api`;
     const { authFunction, authorizer } = apiAuthorizer;
-    this.restApi = new LambdaRestApi(scope, restApiName, {
-      restApiName,
-      defaultCorsPreflightOptions: {
+    this.httpApi = new HttpApi(scope, apiName, {
+      apiName,
+      corsPreflight:{
         allowOrigins: allowedOrigins,
         allowCredentials: true,
         allowHeaders: Cors.DEFAULT_HEADERS,
-        allowMethods: Cors.ALL_METHODS,
+        allowMethods: [
+          CorsHttpMethod.OPTIONS,
+          CorsHttpMethod.GET,
+          CorsHttpMethod.POST,
+          CorsHttpMethod.PUT,
+          CorsHttpMethod.PATCH,
+          CorsHttpMethod.DELETE,
+        ],
       },
-      defaultMethodOptions: {
-        authorizationType: AuthorizationType.CUSTOM,
-        authorizer,
-      },
-      handler: apiErrorFunction.function,
-      proxy: false,
+      defaultIntegration: apiErrorFunction.integration,
+      defaultAuthorizer: authorizer,
+      createDefaultStage: true,
     });
 
     authFunction.addPermission(`${stackPrefix}-api-auth-permission`, {
       action: 'lambda:InvokeFunction',
       principal: new ServicePrincipal('apigateway.amazonaws.com'),
-      sourceArn: `arn:aws:execute-api:${region}:${awsAccountId}:${this.restApi.restApiId}/authorizers/${authorizer.authorizerId}`,
+      sourceArn: `arn:aws:execute-api:${region}:${awsAccountId}:${this.httpApi.apiId}/authorizers/${authorizer.authorizerId}`,
     });
   }
-  public readonly restApi: LambdaRestApi
+  public readonly httpApi: HttpApi
 }

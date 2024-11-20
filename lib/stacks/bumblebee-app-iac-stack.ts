@@ -6,7 +6,6 @@ import { ApiErrorFunction } from "../constructs/api-error-function.construct";
 import { ApiRole } from "../constructs/api-role.construct";
 import { ApiAuthRole } from "../constructs/api-auth-role.construct";
 import { ApiAuthorizer } from "../constructs/api-authorizer.construct";
-import { ApiResources } from "../constructs/api-resources.construct";
 import { ApiIntegration } from "../constructs/api-integration.construct";
 import { getLambdaEnv } from "../utils/lambda-env";
 import { ApiSSMParams } from "../constructs/api-ssm-params.construct";
@@ -60,19 +59,15 @@ export class BumblebeeAppStack extends cdk.Stack {
       config,
       stackPrefix,
     });
+    new ApiIntegration(this, "api-integration", {
+      apiRole,
+      api,
+      stackPrefix,
+      environment: lambdaEnv.api,
+    });
     new ApiSSMParams(this, "api-ssm-params", {
       api,
       config,
-    });
-    const apiResources = new ApiResources(this, "api-resources", {
-      api,
-      stackPrefix,
-    });
-    new ApiIntegration(this, "api-integration", {
-      apiResources,
-      apiRole,
-      stackPrefix,
-      environment: lambdaEnv.api,
     });
   }
 }

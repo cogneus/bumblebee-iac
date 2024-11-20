@@ -39,7 +39,7 @@ export class APIPipeline extends Construct {
     const ssmPolicy = new PolicyStatement({
       sid: "SSMAccess",
       effect: Effect.ALLOW,
-      actions: ["ssm:GetParameter", "ssm:GetParameters"],
+      actions: ["ssm:GetParameter", "ssm:GetParameters", "ssm:PutParameter"],
       resources: regions.reduce<string[]>(
         (resources, targetRegion) => [
           ...resources,

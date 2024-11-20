@@ -5,14 +5,15 @@ import { ApiRole } from './api-role.construct';
 import { Duration } from 'aws-cdk-lib';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import path = require('path');
+import { Api } from './api.construct';
+import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
+import { HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
 
 export interface ApiFunctionProps {
   stackPrefix: string;
   name: string;
   description: string;
   apiRole: ApiRole;
-  resources: Resource[];
-  methods: string[];
   environment: Record<string, string>
   entry: string;
 }
@@ -26,8 +27,6 @@ export class ApiFunction extends Construct {
       name,
       description,
       apiRole,
-      resources,
-      methods,
       environment,
       entry,
     }: ApiFunctionProps
@@ -46,14 +45,7 @@ export class ApiFunction extends Construct {
       entry: path.join(__dirname, `../../packages/api/src/handlers/${entry}.ts`),
     });
 
-    const integration = new LambdaIntegration(lambdaFunction);
-
-    resources.forEach((resource) => {
-      methods.forEach((method) => {
-        resource.addMethod(method, integration, {
-          apiKeyRequired: false,
-        });
-      });
-    });
+    this.integration = new HttpLambdaIntegration(`${functionName}-int`, lambdaFunction);
   }
+  public readonly integration: HttpLambdaIntegration
 }

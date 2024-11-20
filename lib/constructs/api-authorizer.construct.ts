@@ -5,6 +5,7 @@ import { ApiAuthRole } from './api-auth-role.construct';
 import { Duration } from 'aws-cdk-lib';
 import path = require('path');
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { HttpLambdaAuthorizer, HttpLambdaResponseType } from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
 
 export interface ApiAuthorizerProps {
   stackPrefix: string;
@@ -33,12 +34,14 @@ export class ApiAuthorizer extends Construct {
     });
 
     const authorizerName = `${stackPrefix}-api-authorizer`;
-    this.authorizer = new TokenAuthorizer(scope, authorizerName, {
+
+    this.authorizer = new HttpLambdaAuthorizer(authorizerName, authFunction, {
       authorizerName,
-      handler: authFunction,
+      identitySource: ['$request.header.Authorization'],
+      responseTypes: [HttpLambdaResponseType.IAM]
     });
     this.authFunction = authFunction
   }
-  public readonly authorizer: TokenAuthorizer;
+  public readonly authorizer: HttpLambdaAuthorizer;
   public readonly authFunction: Function;
 }

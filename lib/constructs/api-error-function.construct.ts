@@ -4,6 +4,7 @@ import { ApiRole } from "./api-role.construct";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Duration } from "aws-cdk-lib";
 import path = require("path");
+import { HttpLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integrations";
 
 export interface ApiErrorFunctionProps {
   stackPrefix: string;
@@ -19,7 +20,7 @@ export class ApiErrorFunction extends Construct {
   ) {
     super(scope, id);
     const errorFunctionName = `${stackPrefix}-api-error`;
-    this.function = new NodejsFunction(scope, errorFunctionName, {
+    const fn = new NodejsFunction(scope, errorFunctionName, {
       functionName: errorFunctionName,
       role: apiRole.role,
       timeout: Duration.seconds(10),
@@ -30,6 +31,7 @@ export class ApiErrorFunction extends Construct {
       entry: path.join(__dirname, `../../packages/api/src/handlers/error.ts`),
       environment,
     });
+    this.integration = new HttpLambdaIntegration(`${stackPrefix}-api-error-int`, fn);
   }
-  public readonly function: Function;
+  public readonly integration: HttpLambdaIntegration;
 }
