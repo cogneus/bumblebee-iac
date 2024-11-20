@@ -30,7 +30,7 @@ export class ApiAuthorizer extends Construct {
       runtime: Runtime.NODEJS_18_X,
       environment,
       handler: 'main',
-      entry: path.join(__dirname, `../../packages/auth/src/handlers/authorizer.ts`),
+      entry: path.join(__dirname, `../../dist/authorizer.js`),
     });
 
     const authorizerName = `${stackPrefix}-api-authorizer`;
