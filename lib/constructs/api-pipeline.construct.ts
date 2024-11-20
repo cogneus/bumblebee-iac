@@ -40,13 +40,20 @@ export class APIPipeline extends Construct {
       sid: "SSMAccess",
       effect: Effect.ALLOW,
       actions: ["ssm:GetParameter", "ssm:GetParameters"],
-      resources: [
-        `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${stage}/*`,
-        ...deployStageNames.map(
-          (deployStage) =>
-            `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`
-        ),
-      ],
+      resources: regions.reduce<string[]>(
+        (resources, targetRegion) => [
+          ...resources,
+          `arn:aws:ssm:${targetRegion}:${account}:parameter${ssmPrefix}/${stage}/*`,
+          ...deployStageNames.reduce<string[]>(
+            (resources, targetStage) => [
+              ...resources,
+              `arn:aws:ssm:${targetRegion}:${account}:parameter${ssmPrefix}/${targetStage}/*`
+            ],
+            []
+          )
+        ],
+        []
+      ),
     });
 
     const apiPolicy = new PolicyStatement({

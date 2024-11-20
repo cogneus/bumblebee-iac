@@ -59,7 +59,7 @@ export class BumblebeeIacStack extends cdk.Stack {
     });
     deployWave.addPre(new ManualApprovalStep("Approval"));
     regions.forEach((targetRegion) => {
-      deployWave.addStage(
+      const deployStage = deployWave.addStage(
         new BumblebeeAppDeployStage(this, targetRegion, config)
       );
     });
