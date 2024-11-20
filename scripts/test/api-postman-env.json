@@ -1,0 +1,34 @@
+{
+  "id": "8d72e519-1cb0-4332-912a-0824bf1392ec",
+  "name": "API Environment",
+  "values": [
+    {
+      "key": "serviceUrl",
+      "value": "<SERVICE_URL>",
+      "enabled": true
+    },
+    {
+      "key": "readUserToken",
+      "value": "<READ_USER_TOKEN>",
+      "enabled": true
+    },
+    {
+      "key": "writeUserToken",
+      "value": "<WRITE_USER_TOKEN>",
+      "enabled": true
+    },
+    {
+      "key": "deniedUserToken",
+      "value": "<DENIED_USER_TOKEN>",
+      "enabled": true
+    },
+    {
+      "key": "origin",
+      "value": "<ORIGIN>",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2023-11-01T00:00:00.000Z",
+  "_postman_exported_using": "Postman/7.11.0"
+}

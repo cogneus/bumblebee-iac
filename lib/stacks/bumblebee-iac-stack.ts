@@ -62,6 +62,19 @@ export class BumblebeeIacStack extends cdk.Stack {
       const deployStage = deployWave.addStage(
         new BumblebeeAppDeployStage(this, targetRegion, config)
       );
+      deployStage.addPost(
+        new ShellStep(`Test-${targetRegion}`, {
+          input: source,
+          commands: ["cd ./scripts/test", "/bin/bash ./test.sh"],
+          env: {
+            region,
+            component,
+            branch,
+            stage,
+            environmentName,
+          },
+        })
+      );
     });
     deployWave.addPost(
       new ShellStep("Promote", {

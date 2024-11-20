@@ -8,5 +8,6 @@ node_modules
 .cdk.staging
 cdk.out
 **/env.json
+**/*.env.json
 coverage
 dist

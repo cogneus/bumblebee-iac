@@ -1,0 +1,4037 @@
+{
+	"info": {
+		"_postman_id": "fb1fbbcd-4654-4740-8e48-ade74d743b02",
+		"name": "Bumblebee Templates API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31081192"
+	},
+	"item": [
+		{
+			"name": "Templates",
+			"item": [
+				{
+					"name": "Add",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template Latest Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source-update');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target-update');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group-update');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\",\r",
+											"        \"update\": true\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template First Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\"\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}/1",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Remove",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template Latest Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/404', () => {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template First Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/404', () => {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}/1",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Versions",
+					"item": [
+						{
+							"name": "Create",
+							"item": [
+								{
+									"name": "Add Template",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    const request = JSON.parse(pm.request.body.raw)\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+													"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+													"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+													"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+													"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+													"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+													"    pm.collectionVariables.set('templateId', response.id);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"group\": \"test-group-update-0\",\r\n  \"source\": \"test-source-update-0\",\r\n  \"target\": \"test-target-update-0\",\r\n  \"template\": {\r\n      \"test\": \"test-0\",\r\n      \"update\": false\r\n  }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Template",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    const request = JSON.parse(pm.request.body.raw)\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+													"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+													"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+													"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+													"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+													"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+													"    pm.collectionVariables.set('templateId', response.id);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"group\": \"test-group-update-1\",\r\n  \"source\": \"test-source-update-1\",\r\n  \"target\": \"test-target-update-1\",\r\n  \"template\": {\r\n      \"test\": \"test-1\",\r\n      \"update\": true\r\n  }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Template",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    const request = JSON.parse(pm.request.body.raw)\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+													"    pm.expect(response.version, \"Version should be 3\").to.equal(3);\r",
+													"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+													"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+													"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+													"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+													"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+													"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+													"    pm.collectionVariables.set('templateId', response.id);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"group\": \"test-group-update-2\",\r\n  \"source\": \"test-source-update-2\",\r\n  \"target\": \"test-target-update-2\",\r\n  \"template\": {\r\n      \"test\": \"test-2\",\r\n      \"update\": true\r\n  }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "GET",
+							"item": [
+								{
+									"name": "Template Versions",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(index+1);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${index}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${index}`,\r",
+													"            \"update\": index !== 0\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Template Versions Sort Desc",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    const length = response.items.length;\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(length - index);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${length - (index+1)}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${length - (index+1)}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${length - (index+1)}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${length - (index+1)}`,\r",
+													"            \"update\": index !== length-1\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions?sort=desc",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											],
+											"query": [
+												{
+													"key": "sort",
+													"value": "desc"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Template Versions With Current",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(index==0 ? 3 : index);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${index==0 ? 2 : index-1}`,\r",
+													"            \"update\": index !== 1\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions?includeCurrent=true",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											],
+											"query": [
+												{
+													"key": "includeCurrent",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "POST",
+							"item": [
+								{
+									"name": "Template Versions",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(index+1);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${index}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${index}`,\r",
+													"            \"update\": index !== 0\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Template Versions Sort Desc",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    const length = response.items.length;\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(length - index);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${length - (index+1)}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${length - (index+1)}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${length - (index+1)}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${length - (index+1)}`,\r",
+													"            \"update\": index !== length-1\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"sort\": \"desc\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Template Versions With Current",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test('Response status should be HTTP/200', () => {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test('response should match expected', () => {\r",
+													"    pm.response.to.have.body();\r",
+													"    const response = pm.response.json()\r",
+													"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+													"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+													"    response.items.forEach((template, index) => {\r",
+													"        const id = pm.collectionVariables.get(`templateId`);\r",
+													"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+													"        pm.expect(template.version, \"Version to match request\").to.equal(index==0 ? 3 : index);\r",
+													"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(template.group, \"Group to match request\").to.equal(`test-group-update-${index==0 ? 2 : index-1}`);\r",
+													"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+													"            \"test\": `test-${index==0 ? 2 : index-1}`,\r",
+													"            \"update\": index !== 1\r",
+													"        }));\r",
+													"    })\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{writeUserToken}}",
+												"type": "default"
+											},
+											{
+												"key": "Origin",
+												"value": "{{origin}}",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"includeCurrent\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://{{serviceUrl}}/template/{{templateId}}/versions",
+											"protocol": "https",
+											"host": [
+												"{{serviceUrl}}"
+											],
+											"path": [
+												"template",
+												"{{templateId}}",
+												"versions"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Query",
+					"item": [
+						{
+							"name": "Create Templates",
+							"item": [
+								{
+									"name": "Create Template 1",
+									"item": [
+										{
+											"name": "Add Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId1', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId1', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source-update-1\",\r\n  \"target\": \"test-target-update-1\",\r\n  \"template\": {\r\n      \"test\": \"test-1\",\r\n      \"update\": true\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/{{templateId1}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"{{templateId1}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Create Template 2",
+									"item": [
+										{
+											"name": "Add Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId2', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId2', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source-update-2\",\r\n  \"target\": \"test-target-update-2\",\r\n  \"template\": {\r\n      \"test\": \"test-2\",\r\n      \"update\": true\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/{{templateId2}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"{{templateId2}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Create Template 3",
+									"item": [
+										{
+											"name": "Add Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId3', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId3', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source-update-3\",\r\n  \"target\": \"test-target-update-3\",\r\n  \"template\": {\r\n      \"test\": \"test-3\",\r\n      \"update\": true\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/{{templateId3}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"{{templateId3}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Create Template 4",
+									"item": [
+										{
+											"name": "Add Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId4', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Update Template",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+															"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+															"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+															"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+															"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+															"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+															"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+															"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+															"    pm.collectionVariables.set('templateId4', response.id);\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"group\": \"{{queryTestGroup}}\",\r\n  \"source\": \"test-source-update-4\",\r\n  \"target\": \"test-target-update-4\",\r\n  \"template\": {\r\n      \"test\": \"test-4\",\r\n      \"update\": true\r\n  }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/{{templateId4}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"{{templateId4}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Queries",
+							"item": [
+								{
+									"name": "GET",
+									"item": [
+										{
+											"name": "Templates By Group Sort Default",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${index+1}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index+1}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index+1}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${index+1}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Sort Desc",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const length = response.items.length\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${length - index}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${length - index}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${length - index}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${length - index}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}?sort=desc",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													],
+													"query": [
+														{
+															"key": "sort",
+															"value": "desc"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Limit",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.not.equal(undefined);\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${index+1}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index+1}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index+1}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${index+1}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}?limit=3",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													],
+													"query": [
+														{
+															"key": "limit",
+															"value": "3"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Source",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(1);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    const template = response.items[0]\r",
+															"    const id = pm.collectionVariables.get(`templateId2`);\r",
+															"    pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"    pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"    pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-2`);\r",
+															"    pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-2`);\r",
+															"    pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"    pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"        \"test\": `test-2`,\r",
+															"        \"update\": true\r",
+															"    }));\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}?source=test-source-update-2",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													],
+													"query": [
+														{
+															"key": "source",
+															"value": "test-source-update-2"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Target",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(1);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    const template = response.items[0]\r",
+															"    const id = pm.collectionVariables.get(`templateId2`);\r",
+															"    pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"    pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"    pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-2`);\r",
+															"    pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-2`);\r",
+															"    pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"    pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"        \"test\": `test-2`,\r",
+															"        \"update\": true\r",
+															"    }));\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}?target=test-target-update-2",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													],
+													"query": [
+														{
+															"key": "target",
+															"value": "test-target-update-2"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "POST",
+									"item": [
+										{
+											"name": "Templates By Group Sort Default",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    const request = JSON.parse(pm.request.body.raw)\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${index+1}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index+1}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index+1}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${index+1}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Sort Desc",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(4);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const length = response.items.length\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${length - index}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${length - index}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${length - index}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${length - index}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"sort\": \"desc\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Limit",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(3);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.not.equal(undefined);\r",
+															"    response.items.forEach((template, index) => {\r",
+															"        const id = pm.collectionVariables.get(`templateId${index+1}`);\r",
+															"        pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"        pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"        pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-${index+1}`);\r",
+															"        pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-${index+1}`);\r",
+															"        pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"        pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"            \"test\": `test-${index+1}`,\r",
+															"            \"update\": true\r",
+															"        }));\r",
+															"    })\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"limit\": 3\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Source",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(1);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    const template = response.items[0]\r",
+															"    const id = pm.collectionVariables.get(`templateId2`);\r",
+															"    pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"    pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"    pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-2`);\r",
+															"    pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-2`);\r",
+															"    pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"    pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"        \"test\": `test-2`,\r",
+															"        \"update\": true\r",
+															"    }));\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"source\": \"test-source-update-2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Templates By Group Target",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test('Response status should be HTTP/200', () => {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test('response should match expected', () => {\r",
+															"    pm.response.to.have.body();\r",
+															"    const response = pm.response.json()\r",
+															"    pm.expect(response.items.length, \"Count to match request\").to.equal(1);\r",
+															"    pm.expect(response.cursor, \"Cursor to be undefined\").to.equal(undefined);\r",
+															"    const group = pm.collectionVariables.get('queryTestGroup');\r",
+															"    const template = response.items[0]\r",
+															"    const id = pm.collectionVariables.get(`templateId2`);\r",
+															"    pm.expect(template.id, \"Id to match request\").to.equal(id);\r",
+															"    pm.expect(template.version, \"Version to match request\").to.equal(2);\r",
+															"    pm.expect(template.source, \"Source to match request\").to.equal(`test-source-update-2`);\r",
+															"    pm.expect(template.target, \"Target to match request\").to.equal(`test-target-update-2`);\r",
+															"    pm.expect(template.group, \"Group to match request\").to.equal(group);\r",
+															"    pm.expect(JSON.stringify(template.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+															"        \"test\": `test-2`,\r",
+															"        \"update\": true\r",
+															"    }));\r",
+															"});\r",
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "{{writeUserToken}}",
+														"type": "default"
+													},
+													{
+														"key": "Origin",
+														"value": "{{origin}}",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"target\": \"test-target-update-2\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://{{serviceUrl}}/template/query/{{queryTestGroup}}",
+													"protocol": "https",
+													"host": [
+														"{{serviceUrl}}"
+													],
+													"path": [
+														"template",
+														"query",
+														"{{queryTestGroup}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const group = pm.collectionVariables.get('queryTestGroup');",
+									"if(!group){",
+									"    pm.collectionVariables.set('queryTestGroup', `group-${new Date().toISOString()}`);",
+									"}"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Access",
+			"item": [
+				{
+					"name": "Bad Token",
+					"item": [
+						{
+							"name": "Invalid Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer BAD_TOKEN",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Expired Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndyaXRlLnVzZXJAY29nbmV1cy1kZW1vLmNvLnVrIiwiZ2l2ZW5OYW1lIjoiV3JpdGUiLCJsZWdhbE5hbWUiOiJVc2VyIiwicmlnaHRzIjpbIlRFTVBMQVRFU19SRUFEIiwiVEVNUExBVEVTX1dSSVRFIl0sInN1YmplY3QiOiJ3cml0ZS11c2VyIiwidWlkIjoid3JpdGUtdXNlciIsImlhdCI6MTY5OTM4NTY3MCwiZXhwIjoxNjk5Mzg5MjcwLCJhdWQiOiJhdXRoLWRldiIsImlzcyI6ImF1dGguZGV2LmNvZ25ldXMtZGVtby5jby51ayJ9.r-ddMHlgI74lm7uPidqooeAIBgxcVy4DZ1jdnlEgujF6VdX7BhR4slEECCqnOD3Ow3urCTWRZz2hdPgeZsGgAC8rc3ACNzxnueP-71niliTY34QdV8oyZMMTllfCvGP6PAIjQ1pygFbaC8uxY6V_l2_ILv4bdaLpXvRQf2DqSE3xR9kTRrZolajxKrjGYNtEMoPXY-bKM2R1IOlf9JC1NNl0aJQ0GytkdppJalfYYXFbVS2fe-e5l5u6L0jDtKeQpzA4hjvh_FIWOPpiB5M1pb6_lxOfN3WBkiN6SVEDbIslegNapobNjUDnQu0cP1ZLFMTomgD9N2JkDNyke1pgsw",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Deny Read Only Access",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Deny No Access",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{deniedUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{deniedUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{deniedUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template Latest Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{deniedUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template First Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/403', () => {\r",
+											"    pm.response.to.have.status(403);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{deniedUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}/1",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Allow Read Access",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template Latest Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source-update');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target-update');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group-update');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\",\r",
+											"        \"update\": true\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template First Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\"\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}/1",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query Templates By Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/query/test-group-update",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"query",
+										"test-group-update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query Templates By Group Post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{readUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/query/test-group-update",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"query",
+										"test-group-update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Allow Write Access",
+					"item": [
+						{
+							"name": "Add Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group\",\r\n  \"source\": \"test-source\",\r\n  \"target\": \"test-target\",\r\n  \"template\": {\r\n      \"test\": \"test\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Template",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    const request = JSON.parse(pm.request.body.raw)\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal(request.source);\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal(request.target);\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal(request.group);\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify(request.template));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"group\": \"test-group-update\",\r\n  \"source\": \"test-source-update\",\r\n  \"target\": \"test-target-update\",\r\n  \"template\": {\r\n      \"test\": \"test\",\r\n      \"update\": true\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template Latest Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 2\").to.equal(2);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source-update');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target-update');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group-update');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\",\r",
+											"        \"update\": true\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Template First Version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response should match expected', () => {\r",
+											"    pm.response.to.have.body();\r",
+											"    const response = pm.response.json()\r",
+											"    pm.expect(response.id, \"Id should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.id.length, \"Id should not be empty\").to.not.equal(0);    \r",
+											"    pm.expect(response.version, \"Version should be 1\").to.equal(1);\r",
+											"    pm.expect(response.created, \"Created should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.created.length, \"Created should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.modified, \"Modified should not be null\").to.not.equal(null);\r",
+											"    pm.expect(response.modified.length, \"Modified should not be empty\").to.not.equal(0);\r",
+											"    pm.expect(response.source, \"Source to match request\").to.equal('test-source');\r",
+											"    pm.expect(response.target, \"Target to match request\").to.equal('test-target');\r",
+											"    pm.expect(response.group, \"Group to match request\").to.equal('test-group');\r",
+											"    pm.expect(JSON.stringify(response.template), \"Template to match request\").to.equal(JSON.stringify({\r",
+											"        \"test\": \"test\"\r",
+											"    }));\r",
+											"    pm.collectionVariables.set('templateId', response.id);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/{{templateId}}/1",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"{{templateId}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query Templates By Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/query/test-group-update",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"query",
+										"test-group-update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query Templates By Group Post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('Response status should be HTTP/200', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{writeUserToken}}",
+										"type": "default"
+									},
+									{
+										"key": "Origin",
+										"value": "{{origin}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{serviceUrl}}/template/query/test-group-update",
+									"protocol": "https",
+									"host": [
+										"{{serviceUrl}}"
+									],
+									"path": [
+										"template",
+										"query",
+										"test-group-update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "queryTestGroup",
+			"value": ""
+		},
+		{
+			"key": "templateId",
+			"value": ""
+		}
+	]
+}
