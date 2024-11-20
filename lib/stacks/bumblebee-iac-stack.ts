@@ -1,7 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import {
-  CodePipeline,
   CodePipelineSource,
   ManualApprovalStep,
   ShellStep,
@@ -9,7 +8,7 @@ import {
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import type { Config } from "../../scripts/config/config.interface";
 import { BumblebeeAppDeployStage } from "../stages/bumblebee-app-deploy-iac-stage";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { APIPipeline } from "../constructs/api-pipeline.construct";
 
 export class BumblebeeIacStack extends cdk.Stack {
   constructor(scope: Construct, config: Config) {
@@ -26,9 +25,6 @@ export class BumblebeeIacStack extends cdk.Stack {
       component,
       productName,
       regions,
-      deployStages,
-      route53HostedZone,
-      productRef
     } = config;
     const stackPrefix = `${name}-${stage}-${component}-cdk-pipeline`;
     const stackName = `${stackPrefix}-stack`;
@@ -56,53 +52,11 @@ export class BumblebeeIacStack extends cdk.Stack {
       connectionArn: `arn:aws:codestar-connections:${region}:${account}:connection/${connectionId}`,
     });
 
-    const env = {
-      region,
-      component,
-      branch,
-      stage,
-      environmentName,
-    };
-
-    const rolePolicy = [
-      new PolicyStatement({
-        sid: "SSMAccess",
-        effect: Effect.ALLOW,
-        actions: ["ssm:GetParameter", "ssm:GetParameters"],
-        resources: [
-          `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${stage}/*`,
-          ...Object.values(deployStages).map(
-            (deployStage) =>
-              `arn:aws:ssm:${region}:${account}:parameter${ssmPrefix}/${deployStage}/*`
-          ),
-        ],
-      }),
-      new PolicyStatement({
-        sid: "APIAccess",
-        effect: Effect.ALLOW,
-        actions: ["apigateway:GET", "apigateway:PATCH"],
-        resources: [
-          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
-          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`
-        ],
-      }),
-    ];
-
-    const pipeline = new CodePipeline(this, stackPrefix, {
-      pipelineName: stackPrefix,
-      codeBuildDefaults: {
-        rolePolicy,
-      },
-      synthCodeBuildDefaults: {
-        rolePolicy,
-      },
-      synth: new ShellStep("Synth", {
-        env,
-        input: source,
-        commands: ["npm i", "npm run build", "npx cdk synth"],
-      }),
+    const { deployWave } = new APIPipeline(this, "api-pipeline", {
+      stackPrefix,
+      config,
+      source,
     });
-    const deployWave = pipeline.addWave("Deploy");
     deployWave.addPre(new ManualApprovalStep("Approval"));
     regions.forEach((targetRegion) => {
       deployWave.addStage(
@@ -113,7 +67,13 @@ export class BumblebeeIacStack extends cdk.Stack {
       new ShellStep("Promote", {
         input: source,
         commands: ["cd ./scripts/promote", "/bin/bash ./promote.sh"],
-        env,
+        env: {
+          region,
+          component,
+          branch,
+          stage,
+          environmentName,
+        },
       })
     );
   }
