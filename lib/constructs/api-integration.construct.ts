@@ -78,7 +78,7 @@ export class ApiIntegration extends Construct {
       httpApi,
       ["/{id}/versions"],
       [HttpMethod.GET, HttpMethod.POST],
-      new ApiFunction(scope, "remove-function", {
+      new ApiFunction(scope, "versions-function", {
         stackPrefix,
         name: "versions",
         description: "Gets versions of a template in the service",
@@ -92,7 +92,7 @@ export class ApiIntegration extends Construct {
       httpApi,
       ["/query"],
       [HttpMethod.GET, HttpMethod.POST],
-      new ApiFunction(scope, "remove-function", {
+      new ApiFunction(scope, "query-function", {
         stackPrefix,
         name: "query",
         description: "Gets template from the service based on a query",
