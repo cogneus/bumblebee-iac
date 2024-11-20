@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { Function, Runtime } from 'aws-cdk-lib/aws-lambda';
+import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { TokenAuthorizer } from 'aws-cdk-lib/aws-apigateway';
 import { ApiAuthRole } from './api-auth-role.construct';
 import { Duration } from 'aws-cdk-lib';
@@ -21,7 +21,7 @@ export class ApiAuthorizer extends Construct {
   ) {
     super(scope, id);
     const authFunctionName = `${stackPrefix}-api-auth`;
-    const authFunction = new NodejsFunction(scope, authFunctionName, {
+    const authFunction = new Function(scope, authFunctionName, {
       functionName: authFunctionName,
       role: authRole.role,
       timeout: Duration.seconds(10),
@@ -29,8 +29,8 @@ export class ApiAuthorizer extends Construct {
       description: 'Gateway authorizer function for templates API',
       runtime: Runtime.NODEJS_18_X,
       environment,
-      handler: 'main',
-      entry: path.join(__dirname, `../../dist/authorizer.js`),
+      handler: 'authorizer.main',
+      code: Code.fromAsset(`${path.resolve(__dirname)}/../../dist`)
     });
 
     const authorizerName = `${stackPrefix}-api-authorizer`;
