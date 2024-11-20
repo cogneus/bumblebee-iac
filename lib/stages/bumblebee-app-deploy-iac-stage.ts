@@ -14,8 +14,8 @@ export class BumblebeeAppDeployStage extends cdk.Stage {
       github: { branch },
       component,
       stage,
+      deployStage,
     } = config;
-    const deployStage = scope.node.getContext('deployStage');
     const stageName = `${name}-${deployStage}-${component}-${regionCodes[targetRegion]}-cdk-deploy-stage`;
     super(scope, stageName, {
       env: {

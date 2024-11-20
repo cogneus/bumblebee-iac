@@ -33,7 +33,8 @@ export class APIPipeline extends Construct {
       deployStages,
       route53HostedZone,
       productRef,
-      regionCodes
+      regionCodes,
+      secrets: { prefix: secretPrefix }
     } = config;
     const deployStageNames = Object.values(deployStages)
     const ssmPolicy = new PolicyStatement({
@@ -54,6 +55,13 @@ export class APIPipeline extends Construct {
         ],
         []
       ),
+    });
+
+    const secretsPolicy = new PolicyStatement({
+      sid: "SecretsAccess",
+      effect: Effect.ALLOW,
+      actions: ["secretsmanager:GetSecretValue"],
+      resources: [`${secretPrefix}-auth-user-tokens*`],
     });
 
     const apiPolicy = new PolicyStatement({
@@ -84,7 +92,7 @@ export class APIPipeline extends Construct {
     const pipeline = new CodePipeline(this, stackPrefix, {
       pipelineName: stackPrefix,
       codeBuildDefaults: {
-        rolePolicy: [ssmPolicy, apiPolicy],
+        rolePolicy: [ssmPolicy, apiPolicy, secretsPolicy],
       },
       synthCodeBuildDefaults: {
         rolePolicy: [ssmPolicy],
