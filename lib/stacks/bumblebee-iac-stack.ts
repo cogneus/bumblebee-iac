@@ -80,9 +80,10 @@ export class BumblebeeIacStack extends cdk.Stack {
       new PolicyStatement({
         sid: "APIAccess",
         effect: Effect.ALLOW,
-        actions: ["apigateway:GET"],
+        actions: ["apigateway:GET", "apigateway:PATCH"],
         resources: [
-          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`
+          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
+          `arn:aws:apigateway:${region}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`
         ],
       }),
     ];
