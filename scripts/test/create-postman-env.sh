@@ -43,7 +43,7 @@ else
   else
     stage=$nextStage
   fi
-  domainPath="$(aws --region ${region} ssm get-parameter --name "${ssmPrefix}/${stage}/${componentName}/api/domain" | jq -r '.Parameter.Value')"
+  domainPath="$(aws --region ${region} ssm get-parameter --name "${ssmPrefix}/${stage}/${componentName}/cdk/api/domain" | jq -r '.Parameter.Value')"
 fi
 
 serviceUrl=//${domainPath}/v1/staging
