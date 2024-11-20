@@ -18,7 +18,8 @@ export const getSSMValue = async (
         WithDecryption: false,
       })
     );
-  } finally {
+  } catch(ex) {
+    console.log(`Parameter not found ${name}`)
   }
 
   return result?.Parameter?.Value ?? defaultValue;
