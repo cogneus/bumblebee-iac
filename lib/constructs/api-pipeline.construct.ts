@@ -33,6 +33,7 @@ export class APIPipeline extends Construct {
       deployStages,
       route53HostedZone,
       productRef,
+      regionCodes
     } = config;
     const deployStageNames = Object.values(deployStages)
     const ssmPolicy = new PolicyStatement({
@@ -57,6 +58,8 @@ export class APIPipeline extends Construct {
           ...resources,
           `arn:aws:apigateway:${targetRegion}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
           `arn:aws:apigateway:${targetRegion}::/domainnames/${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`,
+          `arn:aws:apigateway:${targetRegion}::/domainnames/${regionCodes[targetRegion]}.${environmentName}.${productRef}.${route53HostedZone}/apimappings`,
+          `arn:aws:apigateway:${targetRegion}::/domainnames/${regionCodes[targetRegion]}.${environmentName}.${productRef}.${route53HostedZone}/apimappings/*`,          
           ...deployStageNames.reduce<string[]>(
             (resources, targetStage) => [
               ...resources,
