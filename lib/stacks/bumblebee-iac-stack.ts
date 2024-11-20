@@ -63,7 +63,7 @@ export class BumblebeeIacStack extends cdk.Stack {
         new BumblebeeAppDeployStage(this, targetRegion, config)
       );
       deployStage.addPost(
-        new ShellStep(`Test-${targetRegion}`, {
+        new ShellStep(`Test`, {
           input: source,
           commands: ["cd ./scripts/test", "/bin/bash ./test.sh"],
           env: {

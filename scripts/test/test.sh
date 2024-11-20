@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 [[ ! -z ${TRACE_ENABLED} ]] && set -x
-source ../scripts/initialise.sh
+source ../initialise.sh
 
 if [[ -z ${folder} ]]; then
   folder=$1
