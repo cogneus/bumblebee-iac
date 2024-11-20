@@ -36,8 +36,9 @@ export class ApiAuthorizer extends Construct {
 
     this.authorizer = new HttpLambdaAuthorizer(authorizerName, authFunction, {
       authorizerName,
+      resultsCacheTtl: Duration.minutes(5),
       identitySource: ['$request.header.Authorization'],
-      responseTypes: [HttpLambdaResponseType.IAM]
+      responseTypes: [HttpLambdaResponseType.SIMPLE]
     });
     this.authFunction = authFunction
   }

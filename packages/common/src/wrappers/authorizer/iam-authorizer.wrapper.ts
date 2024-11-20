@@ -1,17 +1,16 @@
 import 'source-map-support/register'
 import { ServiceContext } from '../../types'
 import { createWrapperContext } from '../utils'
-import { AuthorizerWrapper } from './types'
+import { IamAuthorizerWrapper } from './types'
 import { makeAPIInfo } from './make-api-info'
 import { getTokenFromAuthEvent } from '../../auth'
 import { logEvent } from './log-event'
-import { generatePolicy } from './generate-policy'
 import { destroyClients } from '../../clients'
+import { generatePolicy } from './generate-policy'
 
-export const authorizerWrapper: AuthorizerWrapper =
+export const iamAuthorizerWrapper: IamAuthorizerWrapper =
   ({ handler, getClientOptions, ...contextParams }) =>
   async (event, context: ServiceContext) => {
-    console.log('event', event)
     const apiInfo = makeAPIInfo(event, contextParams)
     const serviceContext = createWrapperContext({
       ...contextParams,

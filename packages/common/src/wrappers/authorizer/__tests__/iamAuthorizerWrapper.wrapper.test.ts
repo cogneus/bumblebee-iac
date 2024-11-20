@@ -1,5 +1,5 @@
 import { APIGatewayRequestAuthorizerEventV2 } from 'aws-lambda'
-import { authorizerWrapper } from '../authorizer.wrapper'
+import { iamAuthorizerWrapper } from '../iam-authorizer.wrapper'
 import { Token } from '../../../auth'
 
 const decodedToken: Token = {
@@ -34,7 +34,7 @@ describe('authorizer wrapper tests', () => {
   describe('should handle response, returns', () => {
     it.each(events)('results matching snapshot', async ({ event, decodedToken: decoded }) => {
       jest.resetAllMocks()
-      const wrapper = authorizerWrapper({
+      const wrapper = iamAuthorizerWrapper({
         handler: async () => {
           if (decoded) {
             return decoded

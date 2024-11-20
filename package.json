@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "npm run build-packages && tsc",
-    "build-packages": "npm run build -w bumblebee-common && npm run build -w bumblebee-services && webpack",
+    "build-packages": "npm run build -w bumblebee-common && npm run build -w bumblebee-services",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk"
@@ -25,10 +25,7 @@
     "ts-jest": "^29.2.5",
     "aws-cdk": "2.166.0",
     "ts-node": "^10.9.2",
-    "typescript": "~5.6.3",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-node-externals": "^3.0.0"
+    "typescript": "~5.6.3"
   },
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.691.0",

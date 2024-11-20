@@ -1,5 +1,5 @@
 import {
-  authorizerWrapper,
+  simpleAuthorizerWrapper,
   checkEnvironmentVariables,
   standardEnvVars,
   Token,
@@ -17,7 +17,7 @@ checkEnvironmentVariables([
   'TOKEN_EXPIRY',
 ])
 
-export const main = authorizerWrapper({
+export const main = simpleAuthorizerWrapper({
   handler: async ({ token, serviceContext }) => {
     const key = await getSigningKey(serviceContext)
     const serviceAttrs = getTokenServiceAttrs()

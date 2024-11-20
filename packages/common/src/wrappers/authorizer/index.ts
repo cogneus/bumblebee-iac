@@ -1,2 +1,2 @@
-export * from './authorizer.wrapper'
+export * from './iam-authorizer.wrapper'
 export * from './types'
