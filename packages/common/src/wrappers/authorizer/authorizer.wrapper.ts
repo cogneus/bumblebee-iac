@@ -11,7 +11,7 @@ import { destroyClients } from '../../clients'
 export const authorizerWrapper: AuthorizerWrapper =
   ({ handler, getClientOptions, ...contextParams }) =>
   async (event, context: ServiceContext) => {
-    context.log.info('event', event)
+    console.log('event', event)
     const apiInfo = makeAPIInfo(event, contextParams)
     const serviceContext = createWrapperContext({
       ...contextParams,
