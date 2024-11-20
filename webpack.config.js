@@ -5,7 +5,14 @@ const nodeExternals = require('webpack-node-externals')
 module.exports = {
   mode: 'production',
   entry: {
-    authorizer: './packages/auth/src/handlers/authorizer.ts'
+    authorizer: './packages/auth/src/handlers/authorizer.ts',
+    error: './packages/api/src/handlers/error.ts',
+    'add-template': './packages/api/src/handlers/add-template.ts',
+    'get-template': './packages/api/src/handlers/get-template.ts',
+    'update-template': './packages/api/src/handlers/update-template.ts',
+    'remove-template': './packages/api/src/handlers/remove-template.ts',
+    'query-template': './packages/api/src/handlers/query-template.ts',
+    'template-versions': './packages/api/src/handlers/template-versions.ts',
   },
   externals: [
     nodeExternals({

@@ -1,13 +1,9 @@
 import { Construct } from 'constructs';
-import { Runtime } from 'aws-cdk-lib/aws-lambda';
-import { LambdaIntegration, Resource } from 'aws-cdk-lib/aws-apigateway';
+import { Code, Runtime, Function } from 'aws-cdk-lib/aws-lambda';
 import { ApiRole } from './api-role.construct';
 import { Duration } from 'aws-cdk-lib';
-import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import path = require('path');
-import { Api } from './api.construct';
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
-import { HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
 
 export interface ApiFunctionProps {
   stackPrefix: string;
@@ -33,7 +29,7 @@ export class ApiFunction extends Construct {
   ) {
     super(scope, id);
     const functionName = `${stackPrefix}-api-${name}`;
-    const lambdaFunction = new NodejsFunction(scope, functionName, {
+    const lambdaFunction = new Function(scope, functionName, {
       runtime: Runtime.NODEJS_18_X,
       role: apiRole.role,
       timeout: Duration.seconds(10),
@@ -41,8 +37,8 @@ export class ApiFunction extends Construct {
       functionName,
       description,
       environment,
-      handler: 'main',
-      entry: path.join(__dirname, `../../packages/api/src/handlers/${entry}.ts`),
+      handler: `${entry}.main`,
+      code: Code.fromAsset(`${path.resolve(__dirname)}/../../dist`),
     });
 
     this.integration = new HttpLambdaIntegration(`${functionName}-int`, lambdaFunction);
