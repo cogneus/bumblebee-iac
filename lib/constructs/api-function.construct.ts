@@ -1,7 +1,8 @@
 import { Construct } from 'constructs';
-import { Code, Runtime, Function } from 'aws-cdk-lib/aws-lambda';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 import { ApiRole } from './api-role.construct';
 import { Duration } from 'aws-cdk-lib';
+import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import path = require('path');
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 
@@ -29,7 +30,7 @@ export class ApiFunction extends Construct {
   ) {
     super(scope, id);
     const functionName = `${stackPrefix}-api-${name}`;
-    const lambdaFunction = new Function(scope, functionName, {
+    const lambdaFunction = new NodejsFunction(scope, functionName, {
       runtime: Runtime.NODEJS_18_X,
       role: apiRole.role,
       timeout: Duration.seconds(10),
@@ -37,8 +38,8 @@ export class ApiFunction extends Construct {
       functionName,
       description,
       environment,
-      handler: `${entry}.main`,
-      code: Code.fromAsset(`${path.resolve(__dirname)}/../../dist`),
+      handler: 'main',
+      entry: path.join(__dirname, `../../packages/api/src/handlers/${entry}.ts`),
     });
 
     this.integration = new HttpLambdaIntegration(`${functionName}-int`, lambdaFunction);
