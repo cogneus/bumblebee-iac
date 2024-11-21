@@ -12,3 +12,7 @@ for file in ./packages/api/src/handlers/*; do
 done
 
 tsc
+
+ls
+cd ..
+ls
