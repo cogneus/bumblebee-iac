@@ -5,6 +5,7 @@ import { Duration } from 'aws-cdk-lib';
 import path = require('path');
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { HttpLambdaAuthorizer, HttpLambdaResponseType } from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
+import { CoreFunction } from './core-function.construct';
 
 export interface ApiAuthorizerProps {
   stackPrefix: string;
@@ -19,17 +20,14 @@ export class ApiAuthorizer extends Construct {
     { stackPrefix, authRole, environment }: ApiAuthorizerProps
   ) {
     super(scope, id);
-    const authFunctionName = `${stackPrefix}-api-auth`;
-    const authFunction = new NodejsFunction(scope, authFunctionName, {
-      functionName: authFunctionName,
+    const functionName = `${stackPrefix}-api-auth`;
+    const authFunction = new CoreFunction(scope, functionName, {
+      functionName,
       role: authRole.role,
-      timeout: Duration.seconds(10),
       memorySize: 128,
       description: 'Gateway authorizer function for templates API',
-      runtime: Runtime.NODEJS_18_X,
       environment,
-      handler: 'main',
-      entry: path.join(__dirname, `../../packages/auth/src/handlers/authorizer.ts`),
+      entry: 'authorizer',
     });
 
     const authorizerName = `${stackPrefix}-api-authorizer`;

@@ -90,7 +90,7 @@ export class ApiIntegration extends Construct {
 
     this.addRoutes(
       httpApi,
-      ["/query/{group}"],
+      ["/query"],
       [HttpMethod.GET, HttpMethod.POST],
       new ApiFunction(scope, "query-function", {
         stackPrefix,
