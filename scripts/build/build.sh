@@ -1,5 +1,5 @@
-#npm run build -w bumblebee-common
-#npm run build -w bumblebee-services
+npm run build -w bumblebee-common
+npm run build -w bumblebee-services
 
 function build {
   file=$1
@@ -17,4 +17,4 @@ for file in ./packages/api/src/handlers/*; do
   build $file
 done
 
-#tsc
+tsc
