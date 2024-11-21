@@ -1,18 +1,20 @@
-npm run build -w bumblebee-common
-npm run build -w bumblebee-services
+#npm run build -w bumblebee-common
+#npm run build -w bumblebee-services
+
+function build {
+  file=$1
+  name=${file#*handlers/}
+  name=${name%.*}
+  esbuild $file \
+    --bundle --outfile=dist/$name/index.js --platform=node --external:@aws-sdk/* --minify --tree-shaking=true
+}
 
 for file in ./packages/auth/src/handlers/*; do
-  esbuild $file \
-    --bundle --outdir=dist --platform=node --external:@aws-sdk/* --minify --tree-shaking=true
+  build $file
 done
 
 for file in ./packages/api/src/handlers/*; do
-  esbuild $file \
-    --bundle --outdir=dist --platform=node --external:@aws-sdk/* --minify --tree-shaking=true
+  build $file
 done
 
-tsc
-
-ls
-cd ..
-ls
+#tsc

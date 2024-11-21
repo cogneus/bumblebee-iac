@@ -18,8 +18,8 @@ export class CoreFunction extends Function {
       architecture: Architecture.ARM_64,
       timeout: Duration.seconds(10),
       memorySize: 512,
-      handler: 'main',
-      code: Code.fromAsset(path.join(__dirname, `../../dist/${props.entry}.js`)),
+      handler: 'index.main',
+      code: Code.fromAsset(path.join(__dirname, `../../dist/${props.entry}`)),
       ...props
     });
   }
