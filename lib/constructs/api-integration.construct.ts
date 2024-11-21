@@ -22,7 +22,7 @@ export class ApiIntegration extends Construct {
 
     this.addRoutes(
       httpApi,
-      ["", "/{id}/{version}"],
+      [""],
       [HttpMethod.POST],
       new ApiFunction(scope, "add-function", {
         stackPrefix,
@@ -36,7 +36,7 @@ export class ApiIntegration extends Construct {
 
     this.addRoutes(
       httpApi,
-      ["/{id}"],
+      ["/{id}", "/{id}/{version}"],
       [HttpMethod.GET],
       new ApiFunction(scope, "get-function", {
         stackPrefix,
