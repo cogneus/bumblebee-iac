@@ -19,7 +19,7 @@ export class CoreFunction extends Function {
       timeout: Duration.seconds(10),
       memorySize: 512,
       handler: 'main',
-      code: Code.fromAsset(path.join(__dirname, `../../dist/${props.entry}.ts`)),
+      code: Code.fromAsset(path.join(__dirname, `../../dist/${props.entry}.js`)),
       ...props
     });
   }
