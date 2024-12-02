@@ -7,7 +7,7 @@ import {
 } from "aws-cdk-lib/pipelines";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import type { Config } from "../../scripts/config/config.interface";
-import { BumblebeeAppDeployStage } from "../stages/bumblebee-app-deploy-iac-stage";
+import { BumblebeeAppDeployStage } from "../stages/bumblebee-app-deploy.stage";
 import { APIPipeline } from "../constructs/api-pipeline.construct";
 
 export class BumblebeeIacStack extends cdk.Stack {
